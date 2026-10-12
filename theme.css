@@ -295,3 +295,16 @@ body.auth-pending .welcome-pet-personal .welcome-pet-heart{top:-5px;left:50%}
 .home-emergency{background:#f0f7ed;border-radius:14px;padding:12px;margin:9px 0}
 .home-emergency p{margin:5px 0}
 @media(max-width:440px){.home-quick-actions{gap:7px}.home-quick-actions button{flex-basis:calc(50% - 7px);font-size:14px}}
+
+/* v54: acciones de cuidado y búsqueda accesibles */
+.home-tasks{background:#eff8ed;border:1px solid #d7e8d0;border-radius:20px;padding:16px;margin:0 0 20px}
+.home-tasks h2{margin:0 0 12px}
+.home-task{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px solid #dce8d8}
+.home-task>span{flex:1;min-width:0;line-height:1.6}
+.home-task>div{display:flex;flex-wrap:wrap;gap:6px}
+.home-task button{min-height:40px}
+.home-birthdays{margin:12px 0}.home-birthdays details{background:#fff0f4;border-radius:16px;padding:15px}
+.home-birthdays summary{cursor:pointer;font-weight:700}
+.home-search-result{padding:12px 0;border-top:1px solid #e6ded7;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.home-search-result strong{flex:1;min-width:120px}.home-search-result small{color:#665f63}
+@media(max-width:640px){.home-task{align-items:stretch;flex-direction:column}.home-task>div button{flex:1}}
