@@ -160,3 +160,11 @@ main .record p{margin:7px 0}
 .care-event span{overflow-wrap:anywhere}
 .home-upcoming>button{margin-top:15px}
 @media(max-width:650px){.care-event{align-items:flex-start;flex-direction:column;gap:6px}.home-upcoming{padding:16px}}
+
+/* Controles táctiles accesibles en pantallas pequeñas */
+@media(max-width:650px){
+ #bottom button{min-height:48px;touch-action:manipulation}
+ #bottom button.active{background:#ffe7cb;color:#332920;border-radius:14px;font-weight:800}
+ .deworm-entry-actions button,.weight-actions button{min-height:42px}
+ .weight-toolbar>button{min-height:46px}
+}
