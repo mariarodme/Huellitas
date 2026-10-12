@@ -11,11 +11,11 @@ const all=[['inicio','Inicio'],['mascotas','Mascotas'],['agenda','Agenda'],...gr
 const icons={inicio:'⌂',mascotas:'🐾',agenda:'▦',salud:'♡',buscar:'⌕',recordatorios:'♧',configuracion:'⚙'};
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','"':'&quot;',"'":'&#39;'}[c]));
 const link=(id,label,page)=>'<button type="button" data-page="'+id+'" class="hs-link'+(page===id?' is-active':'')+'" '+(page===id?'aria-current="page"':'')+'>'+esc(label)+'</button>';
-const group=(g,page)=>'<details class="hs-dropdown" '+(g.items.some(([id])=>id===page)?'data-has-active="true"':'')+'><summary>'+esc(g.label)+' <span aria-hidden="true">⌄</span></summary><div class="hs-dropdown-panel">'+g.items.map(([id,label])=>link(id,label,page)).join('')+'</div></details>';
+const group=(g,page)=>'<details class="hs-dropdown" '+(g.items.some(([id])=>id===page)?'data-has-active="true"':'')+'><summary>'+esc(g.label)+' <span aria-hidden="true">⌄</span></summary><div class="hs-dropdown-panel">'+g.items.map(([id,label])=>link(id,label,page)).join('')+(g.label==='Más'?'<button type="button" class="hs-link" data-action="hsBackup">↓ Descargar respaldo</button>':'')+'</div></details>';
 window.huellitasRenderNav=function(page){
  const desktop=document.getElementById('hs-desktop-links'),drawer=document.getElementById('hs-drawer-links');
  if(desktop)desktop.innerHTML=[['inicio','Inicio'],['mascotas','Mascotas'],['agenda','Agenda']].map(([id,label])=>link(id,label,page)).join('')+groups.map(g=>group(g,page)).join('');
- if(drawer)drawer.innerHTML='<div class="hs-drawer-group"><h3>Principal</h3>'+[['inicio','Inicio'],['mascotas','Mascotas'],['agenda','Agenda'],['buscar','Buscar']].map(([id,label])=>link(id,label,page)).join('')+'</div>'+groups.map(g=>'<div class="hs-drawer-group"><h3>'+esc(g.label)+'</h3>'+g.items.map(([id,label])=>link(id,label,page)).join('')+'</div>').join('');
+ if(drawer)drawer.innerHTML='<div class="hs-drawer-group"><h3>Principal</h3>'+[['inicio','Inicio'],['mascotas','Mascotas'],['agenda','Agenda'],['buscar','Buscar']].map(([id,label])=>link(id,label,page)).join('')+'</div>'+groups.map(g=>'<div class="hs-drawer-group"><h3>'+esc(g.label)+'</h3>'+g.items.map(([id,label])=>link(id,label,page)).join('')+(g.label==='Más'?'<button type="button" class="hs-link" data-action="hsBackup">↓ Descargar respaldo</button>':'')+'</div>').join('');
  const current=document.getElementById('hs-current');
  if(current){const entry=all.find(x=>x[0]===page);current.textContent=entry?entry[1]:'Huellitas'}
  const bottom=document.getElementById('bottom');
@@ -23,6 +23,7 @@ window.huellitasRenderNav=function(page){
 };
 function drawer(open){const d=document.getElementById('hs-drawer');if(!d)return;d.hidden=!open;document.body.classList.toggle('hs-drawer-open',open);document.getElementById('hs-menu-toggle')?.setAttribute('aria-expanded',String(open));if(open)d.querySelector('[data-page]')?.focus();else document.getElementById('hs-menu-toggle')?.focus()}
 document.addEventListener('click',e=>{
+ const backup=e.target.closest('[data-action="hsBackup"]');if(backup){e.preventDefault();if(typeof window.backup==='function')window.backup();drawer(false);return}
  const toggle=e.target.closest('[data-action="hsOpenDrawer"]');
  if(toggle){e.preventDefault();drawer(true);return}
  if(e.target.closest('[data-action="hsCloseDrawer"]')||e.target.id==='hs-drawer'){e.preventDefault();drawer(false);return}
