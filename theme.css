@@ -511,3 +511,17 @@ body:not(.auth-pending)[data-current-page="inicio"] .home-quick-action-arrow{mar
  body:not(.auth-pending)[data-current-page="inicio"] .home-quick-actions button{min-height:58px!important;padding:9px!important;font-size:12px!important;gap:7px!important}
  body:not(.auth-pending)[data-current-page="inicio"] .home-quick-action-icon{width:32px;height:32px;font-size:17px}
 }
+
+/* v71 — compact mobile pet navigation for desparasitación */
+.deworm-mobile-picker{display:none}
+@media(max-width:700px){
+ .deworm-mobile-picker{display:flex;align-items:center;gap:12px;position:sticky;top:62px;z-index:12;padding:10px 12px;margin:12px 0;border:1px solid #e9dcd5;border-radius:15px;background:#fffaf5;box-shadow:0 5px 16px #3b302016}
+ .deworm-mobile-picker label{flex:none;margin:0;font-size:13px;font-weight:750;color:#41584a}
+ .deworm-mobile-picker select{min-width:0;flex:1;width:auto;padding:10px 12px;border:1px solid #e6d6ce;border-radius:11px;background:white;font-size:15px;font-weight:700;color:#405447}
+ .deworm-grid>.deworm-pet{display:none!important}
+ .deworm-grid>.deworm-pet:first-child{display:block!important}
+ .deworm-grid:has(.deworm-current)>.deworm-pet:first-child:not(.deworm-current){display:none!important}
+ .deworm-grid>.deworm-pet.deworm-current{display:block!important}
+ .deworm-grid{display:block!important}
+ .deworm-grid>.deworm-pet{margin:0!important}
+}
