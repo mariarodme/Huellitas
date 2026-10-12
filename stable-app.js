@@ -95,6 +95,7 @@ function checkReminders(){
  if(document.visibilityState!=='visible'||!Array.isArray(state.recordatorios))return;
  const now=new Date(),cutoff=new Date(now.getTime()-120000);
  for(const x of state.recordatorios){
+  if(x.completedAt)continue;
   const due=reminderDate(x,cutoff);
   if(!due||due>now||now-due>120000)continue;
   const key=x.id+'-'+due.getTime();
