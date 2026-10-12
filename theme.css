@@ -85,3 +85,64 @@ main .record p{margin:7px 0}
 .calendar-day.empty-day{background:#f6f2eb}
 .calendar-event{font-size:12px;background:var(--pink);border-radius:8px;padding:4px 6px;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 @media(max-width:650px){.calendar-day{min-height:70px;padding:4px 2px}.calendar-day strong{font-size:12px;text-align:center}.calendar-event{font-size:10px;padding:3px 2px}.calendar-toolbar button{padding:8px 12px}.calendar-weekday{font-size:12px;padding:8px 2px}}
+
+
+/* Huellitas mobile-first care dashboard: inspired by native pet organizers */
+:root{--ink:#253b35;--pink:#f8e9e7;--yellow:#e7f2e9;--blue:#eaf2f7;--lime:#e8f2df;--cream:#f6f8f6;--purple:#f0ecf9}
+body{background:#f6f8f6;color:#253b35}
+header{min-height:68px;background:#fff;border-bottom:1px solid #e4ebe6;padding:12px clamp(18px,4vw,45px)}
+.logo{font-family:'DM Sans',sans-serif;font-size:25px;letter-spacing:-.8px;color:#2b5545}
+button{border:0;box-shadow:none;background:#326c55;color:white;font-weight:700;border-radius:15px;padding:11px 16px}
+button:hover{box-shadow:none;transform:none;background:#275941}
+button.secondary{background:#edf4ee;color:#326c55}
+.hero{background:#edf5ef;border:0;min-height:210px;padding:30px clamp(20px,5vw,65px);grid-template-columns:1fr auto;gap:22px}
+.hero:before,.hero:after,main:before,main .cards .card:after{display:none}
+.hero h1{font-family:'DM Sans',sans-serif;font-size:clamp(30px,3.7vw,48px);letter-spacing:-1.5px;line-height:1.13}
+.hero h1 span{color:#43836a}
+.hero p{font-size:15px;max-width:580px;margin:12px 0 18px}
+.hero button{background:#326c55;color:white;font-size:14px;padding:12px 18px}
+.hero .art{width:130px;height:130px;border:0;box-shadow:none;transform:none;border-radius:26px;background:#dcece2 url('https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=450&q=80') center/cover}
+main{max-width:1160px;padding:30px 22px 125px}
+main>h2{font-family:'DM Sans',sans-serif;font-size:clamp(27px,3vw,36px);font-weight:800;letter-spacing:-1px}
+main>p.muted{font-size:14px}
+nav{gap:8px;margin:20px 0 26px}
+nav button{border:1px solid #e1e9e3;background:white;color:#45665a;padding:10px 13px;border-radius:13px;font-size:13px}
+nav button.active{background:#326c55;color:white;box-shadow:none}
+.cards{gap:14px}
+.card,main .cards .card{border:1px solid #e5ece6;border-radius:20px;background:white;box-shadow:0 3px 15px #294f3d0a;min-height:0;padding:21px}
+.card:nth-child(n){background:white}
+.card h3,#content>.card h3{font-family:'DM Sans',sans-serif;font-size:18px;font-weight:800;color:#2e5545}
+.card h1{font-family:'DM Sans',sans-serif;font-size:42px;color:#326c55}
+#content>.card{margin-top:13px}
+#content .card img{border:0}
+input,select,textarea{border:1px solid #d6e3da;background:#fff;border-radius:12px}
+.dialog{border:1px solid #dce7de;box-shadow:0 16px 50px #142d2730;background:#fff}
+.dialog h2{font-family:'DM Sans',sans-serif;font-size:26px}
+.dialog .actions{background:#fff}
+.empty{border:1px dashed #bdcfc1;background:white}
+@media(max-width:650px){
+ header{min-height:62px;padding:10px 16px}
+ .logo{font-size:23px}
+ header button{padding:9px 12px}
+ .hero{padding:20px 17px;min-height:0;grid-template-columns:1fr;gap:0}
+ .hero h1{font-size:26px;letter-spacing:-.7px}
+ .hero p{font-size:13px;line-height:1.45;margin:8px 0 13px}
+ .hero .art{display:none}
+ .hero button{width:auto;font-size:13px;padding:10px 14px}
+ main{padding:23px 15px calc(120px + env(safe-area-inset-bottom))}
+ main>h2{font-size:27px}
+ main>p.muted{font-size:13px;margin-bottom:18px}
+ .cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+ .card,main .cards .card{padding:16px;border-radius:18px;min-width:0;min-height:0;box-shadow:0 2px 10px #294f3d0a}
+ .card h3{font-size:16px}
+ .card h1{font-size:35px}
+ #content .cards .card:has(button[data-action="profile"]){grid-column:span 2}
+ #content .cards .card:has(input[type="file"]){grid-column:span 2}
+ #content .cards .card p{overflow-wrap:anywhere}
+ .bottom{display:flex;background:#fff;border-top:1px solid #e1eae4;box-shadow:0 -3px 18px #163e2c10;padding:7px 6px calc(9px + env(safe-area-inset-bottom));z-index:12}
+ .bottom button{font-family:'DM Sans',sans-serif;color:#60796d;min-width:0;flex:1;font-size:10px;font-weight:700;line-height:1.4;padding:8px 1px;border-radius:12px;white-space:normal}
+ .bottom button[data-page="inicio"],.bottom button[data-page="mascotas"],.bottom button[data-page="agenda"],.bottom button[data-page="recordatorios"],.bottom button[data-page="configuracion"]{background:transparent}
+ .dialog{padding:19px}
+ #content>.empty{padding:26px 15px}
+}
+@media(max-width:370px){.cards{grid-template-columns:1fr}#content .cards .card:has(button[data-action="profile"]){grid-column:auto}}
