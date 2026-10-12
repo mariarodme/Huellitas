@@ -1,0 +1,19 @@
+{
+  "name": "Huellitas - Cuidado de mascotas",
+  "short_name": "Huellitas",
+  "description": "Organizador personal de mascotas",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fff9ef",
+  "theme_color": "#ffd6de",
+  "lang": "es",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
