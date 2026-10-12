@@ -11,6 +11,32 @@
  import('https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js')]);
  const app=initializeApp(cfg),auth=getAuth(app),db=getFirestore(app);
  const key='huellitas-v1';let baseline=null,working=false,active=false,cloudRef=null;const familyKey='huellitas-family-owner';const fingerprint=raw=>{try{return JSON.stringify(JSON.parse(raw||'{}'))}catch{return raw||''}};const local=()=>fingerprint(localStorage.getItem(key));
+
+ // Three-way merge: combine independent record changes; never guess when the same record changed twice.
+ const mergePayload=(baseRaw,localRaw,remoteRaw)=>{
+  const base=JSON.parse(baseRaw||'{}'),left=JSON.parse(localRaw||'{}'),right=JSON.parse(remoteRaw||'{}');
+  const result={...right};
+  const eq=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+  for(const section of new Set([...Object.keys(base),...Object.keys(left),...Object.keys(right)])){
+   const b=base[section],l=left[section],r=right[section];
+   if(Array.isArray(b)&&Array.isArray(l)&&Array.isArray(r)){
+    if(![...b,...l,...r].every(x=>x&&typeof x==='object'&&typeof x.id==='string'))throw Error('Conflicto: registro sin identificador.');
+    const ids=new Set([...b,...l,...r].map(x=>x.id)),bm=new Map(b.map(x=>[x.id,x])),lm=new Map(l.map(x=>[x.id,x])),rm=new Map(r.map(x=>[x.id,x]));
+    const merged=[];
+    for(const id of ids){const bv=bm.get(id),lv=lm.get(id),rv=rm.get(id);
+     const lc=!eq(lv,bv),rc=!eq(rv,bv);
+     if(lc&&rc&&!eq(lv,rv))throw Error('Conflicto: el mismo registro fue editado en dos dispositivos.');
+     const chosen=lc?lv:rv;if(chosen!==undefined)merged.push(chosen);
+    }
+    result[section]=merged;
+   }else{
+    const lc=!eq(l,b),rc=!eq(r,b);
+    if(lc&&rc&&!eq(l,r))throw Error('Conflicto: cambios incompatibles.');
+    if(lc)result[section]=l;
+   }
+  }
+  return JSON.stringify(result);
+ };
  const error=e=>{console.error(e);say('Error: '+(e.code||e.message||'No se pudo completar.'))};
  const authForm=()=>{ui.innerHTML='<p>Inicia sesión con la misma cuenta en todos tus dispositivos.</p><div style="display:flex;flex-wrap:wrap;gap:8px"><input id="cloud-email" type="email" autocomplete="email" placeholder="Correo electrónico" style="padding:12px;min-width:180px;flex:1"><input id="cloud-pass" type="password" autocomplete="current-password" placeholder="Contraseña" style="padding:12px;min-width:180px;flex:1"></div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><button id="cloud-login">Entrar</button><button id="cloud-signup">Crear cuenta</button><button id="cloud-google">Entrar con Google</button></div><p style="font-size:13px">Tu contraseña no se guarda en Huellitas; se procesa mediante Firebase Authentication.</p>';
  const credentials=()=>[document.getElementById('cloud-email').value.trim(),document.getElementById('cloud-pass').value];
