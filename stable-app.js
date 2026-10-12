@@ -7,6 +7,9 @@ let page='inicio',month=new Date().getMonth(),year=new Date().getFullYear();
 const $=id=>document.getElementById(id),escape=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[c]));
 const date=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
 const pet=id=>state.mascotas.find(p=>p.id===id)?.nombre||'';
+const careItems=()=>['agenda','vacunas','recordatorios','desparasitacion'].flatMap(kind=>(state[kind]||[]).map(x=>({...x,kind,when:(kind==='vacunas'||kind==='desparasitacion')?(x.proximaFecha||''):x.fecha}))).filter(x=>/^\d{4}-\d{2}-\d{2}$/.test(x.when||''));
+const careStatus=when=>{const days=Math.round((new Date(when+'T12:00:00')-new Date(date()+'T12:00:00'))/86400000);return days<0?'late':days<=7?'soon':'ok'};
+const careBadge=when=>{const s=careStatus(when);return '<span class="care-badge '+s+'">'+(s==='late'?'🔴 Atrasado':s==='soon'?'🟡 Próximo':'🟢 Programado')+'</span>'};
 function save(){try{localStorage.setItem(K,JSON.stringify(state));render()}catch{alert('No se pudo guardar: almacenamiento lleno o bloqueado.')}}
 function nav(){const keys=Object.keys(sections);$('nav').innerHTML=keys.map(k=>'<button data-page="'+k+'" class="'+(page===k?'active':'')+'">'+sections[k]+'</button>').join('');$('bottom').innerHTML=['inicio','mascotas','calendario','recordatorios','configuracion'].map(k=>'<button data-page="'+k+'" class="'+(page===k?'active':'')+'">'+sections[k]+'</button>').join('')}
 function render(){nav();$('heading').textContent=sections[page];const el=$('content');
