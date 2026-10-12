@@ -60,5 +60,28 @@ window.exportExpenses=function(){
  const csv='\uFEFF'+rows.map(r=>r.map(c=>'"'+String(c??'').replaceAll('"','""')+'"').join(',')).join('\r\n');
  const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='huellitas-gastos.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
 };
+
+/* Dashboard, búsqueda y resumen local */
+const previousRender=render;
+let searchTerm='';
+render=function(){
+ previousRender();
+ if(section==='inicio'){
+   const entries=[...data.agenda.map(x=>({...x,tipo:'📅 Cita'})),...data.vacunas.map(x=>({...x,tipo:'💉 Vacuna'})),...data.medicamentos.map(x=>({...x,tipo:'💊 Medicamento'})),...data.recordatorios.map(x=>({...x,tipo:'🔔 Recordatorio'}))]
+   .filter(x=>x.fecha&&x.fecha>=today()).sort((a,b)=>a.fecha.localeCompare(b.fecha)).slice(0,5);
+   const target=document.getElementById('content');
+   target.insertAdjacentHTML('beforeend','<section class="upcoming"><h2>📆 Próximas actividades</h2>'+(entries.length?'<div class="cards">'+entries.map(x=>'<div class="card"><strong>'+esc(x.tipo)+'</strong><h3>'+esc(x.nombre)+'</h3><p>'+esc(x.fecha)+' '+esc(x.hora||'')+'</p><p class="muted">'+esc(data.mascotas.find(p=>p.id===x.pet)?.nombre||'')+'</p></div>').join('')+'</div>':'<div class="empty">¡Todo al día! Aquí aparecerán las próximas actividades. 🐾</div>')+'</section>');
+ }
+ if(section==='mascotas'&&data.mascotas.length){
+   const target=document.getElementById('content');
+   const cards=target.querySelector('.cards');
+   if(cards){
+     cards.insertAdjacentHTML('beforebegin','<label for="petSearch">🔎 Buscar mascota</label><input id="petSearch" type="search" placeholder="Escribe el nombre..." value="'+esc(searchTerm)+'">');
+     const input=document.getElementById('petSearch');
+     const filter=()=>{const q=input.value.trim().toLocaleLowerCase('es');Array.from(cards.children).forEach(card=>{const title=card.querySelector('h3');card.hidden=!!q&&!title?.textContent.toLocaleLowerCase('es').includes(q)})};
+     input.oninput=()=>{searchTerm=input.value;filter()};filter();
+   }
+ }
+};
 render();
 })();
