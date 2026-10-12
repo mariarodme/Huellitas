@@ -66,3 +66,12 @@ main .record p{margin:7px 0}
 .dialog .actions{position:sticky;bottom:-25px;background:var(--cream);padding:15px 0 3px}
 #content .card img{display:block;width:100%;object-fit:cover;margin-bottom:16px;border:2px solid var(--ink)}
 @media(max-width:650px){main:before{top:14px;right:20px;font-size:26px}main .cards .card{min-height:155px}main .record{flex-direction:column}main .record button{align-self:flex-end}#content>.empty{padding:36px 18px}}
+
+/* Useful mobile dashboard */
+.upcoming{margin-top:42px}
+.upcoming h2{font-family:'Fredoka',sans-serif;font-size:clamp(29px,3vw,43px);margin:0 0 20px}
+.upcoming .card{min-height:130px}
+.upcoming .card strong{display:inline-block;background:#fff;border:1.5px solid #26251f;border-radius:20px;padding:5px 12px;margin-bottom:14px}
+#petSearch{max-width:420px;margin:0 0 24px;background:white}
+.card[hidden]{display:none!important}
+@media(max-width:650px){.upcoming{margin-top:32px}.upcoming .card{min-height:120px}#petSearch{max-width:100%}}
