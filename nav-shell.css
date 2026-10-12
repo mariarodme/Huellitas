@@ -170,3 +170,7 @@ body:not(.auth-pending)[data-current-page="inicio"] main>.hs-page-subtitle{displ
 
 /* v69: fit Calendario alongside the other visible desktop links */
 @media(min-width:901px) and (max-width:1300px){.hs-header-inner{gap:6px!important;padding-inline:12px!important}.hs-header .hs-desktop-links>.hs-main-link,.hs-header .hs-desktop-links>.hs-settings-link,.hs-header .hs-desktop-links>.hs-all-dropdown>summary{padding:9px 7px!important;gap:5px!important;font-size:12px!important}.hs-brand{font-size:23px!important}.hs-brand-mark{width:34px;height:34px}}
+
+/* v72: Section content already has its own heading; remove duplicate page heading and generic tagline everywhere */
+body:not(.auth-pending) main>h2#heading.hs-page-heading,
+body:not(.auth-pending) main>p.hs-page-subtitle{display:none!important}
