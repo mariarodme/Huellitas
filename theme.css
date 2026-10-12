@@ -232,3 +232,8 @@ body:not(.auth-pending):has(#nav button[data-page="configuracion"].active) #huel
 @media(max-width:650px){
  body:not(.auth-pending):has(#bottom button[data-page="configuracion"].active) #huellitas-cloud{display:block!important}
 }
+
+/* Pantalla de bienvenida sin mensajes técnicos de sincronización. */
+body.auth-pending #cloud-status{display:none}
+body.auth-pending #cloud-title{text-align:center}
+body.auth-pending #cloud-controls>p:first-child{text-align:center}
