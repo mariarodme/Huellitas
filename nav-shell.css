@@ -174,3 +174,18 @@ body:not(.auth-pending)[data-current-page="inicio"] main>.hs-page-subtitle{displ
 /* v72: Section content already has its own heading; remove duplicate page heading and generic tagline everywhere */
 body:not(.auth-pending) main>h2#heading.hs-page-heading,
 body:not(.auth-pending) main>p.hs-page-subtitle{display:none!important}
+
+/* v73: calm, compact mobile navigation drawer */
+@media(max-width:900px){
+ .hs-drawer{background:rgba(30,43,36,.38)!important;align-items:stretch!important}
+ .hs-drawer-panel{width:min(390px,92vw)!important;padding:18px 16px calc(25px + env(safe-area-inset-bottom))!important;background:#fffaf6!important;box-shadow:-12px 0 40px #27241c26!important}
+ .hs-drawer-top{padding:3px 0 17px!important;margin-bottom:15px!important}
+ .hs-drawer-top strong{font-size:19px!important;letter-spacing:-.3px!important}
+ .hs-drawer-close{width:39px!important;height:39px!important;min-width:39px!important;border:1px solid #eadbd4!important;border-radius:13px!important;background:#fff1ec!important;color:#624d46!important;font-size:21px!important}
+ .hs-drawer-links{display:flex!important;flex-direction:column!important;gap:12px!important;padding:0 0 20px!important}
+ .hs-drawer-group{padding:13px!important;margin:0!important;background:#fff!important;border:1px solid #f0e3dc!important;border-radius:17px!important;box-shadow:0 3px 12px #4d33260a!important}
+ .hs-drawer-group:first-child{background:#fff7f2!important}
+ .hs-drawer-group h3{margin:0 0 9px!important;font-size:10px!important;letter-spacing:.13em!important;color:#a4776c!important}
+ .hs-drawer-group .hs-link{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-height:39px!important;margin:3px!important;padding:8px 11px!important;border:1px solid #f0e4df!important;border-radius:11px!important;background:#fffaf8!important;color:#41574a!important;font-size:12px!important;font-weight:700!important;line-height:1.2!important;box-shadow:none!important}
+ .hs-drawer-group .hs-link.is-active{background:#e5f2e8!important;color:#2b6042!important;border-color:#c6e1cc!important}
+}
