@@ -123,6 +123,7 @@ document.addEventListener('visibilitychange',()=>{if(document.visibilityState===
 setTimeout(checkReminders,1500);
 function go(s){if(!sections[s])return;page=s;const menu=$('mobile-sections');if(menu)menu.open=true;render();window.scrollTo({top:0,behavior:'instant'})}
 function download(name,blob){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),2000)}
+document.addEventListener('change',e=>{if(e.target.id!=='deworm-pet-select')return;const cards=document.querySelectorAll('.deworm-grid>.deworm-pet');const n=Number(e.target.value);cards.forEach((card,i)=>card.classList.toggle('deworm-current',i===n))});
 document.addEventListener('click',e=>{const b=e.target.closest('[data-action="mobileQuickToggle"]');if(b){const panel=document.getElementById('mobile-quick-panel');if(panel){panel.hidden=!panel.hidden;b.setAttribute('aria-expanded',String(!panel.hidden));if(!panel.hidden)panel.querySelector('button')?.focus()}return}if(e.target.closest('[data-action="mobileQuickClose"]')){const p=document.getElementById('mobile-quick-panel');if(p)p.hidden=true;document.getElementById('mobile-quick-toggle')?.setAttribute('aria-expanded','false')}});
 document.addEventListener('click',async e=>{const btn=e.target.closest('button,[data-page]');if(!btn)return;try{
  if(btn.dataset.page){const p=document.getElementById('mobile-quick-panel');if(p)p.hidden=true;document.getElementById('mobile-quick-toggle')?.setAttribute('aria-expanded','false');go(btn.dataset.page);return}
