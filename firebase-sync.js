@@ -19,8 +19,8 @@
  document.getElementById('cloud-google').onclick=async()=>{try{await signInWithPopup(auth,new GoogleAuthProvider())}catch(e){error(e)}};
  };
  onAuthStateChanged(auth,user=>{
- if(!user){say('Sin sesión. Tus datos locales siguen disponibles.');authForm();return}
- say('Conectado como '+(user.email||'usuario')+'. Comprobando sincronización…');
+ if(!user){document.body.classList.add('auth-pending');say('Sin sesión. Tus datos locales siguen disponibles.');authForm();return}
+ document.body.classList.remove('auth-pending');say('Conectado como '+(user.email||'usuario')+'. Comprobando sincronización…');
  ui.innerHTML='<p>Los cambios se sincronizan automáticamente después de comprobar que los datos locales y de Firebase coinciden. Si hay diferencias iniciales, usa los botones para elegir qué copia conservar.</p><div style="display:flex;gap:8px;flex-wrap:wrap"><button id="cloud-upload">⬆ Subir respaldo a Firebase</button><button id="cloud-download">⬇ Descargar datos de Firebase</button><button id="cloud-logout" class="secondary">Cerrar sesión</button></div><p style="font-size:13px">Los documentos adjuntos guardados en este dispositivo no se sincronizan todavía. Descarga también un respaldo JSON desde Huellitas.</p>';
  const family=document.createElement('div');family.id='family-sharing-panel';family.style.cssText='margin-top:18px;padding:16px;background:#fff5e8;border-radius:16px;border:1px solid #ead9c9';ui.append(family);
  const invitedOwner=new URLSearchParams(location.search).get('family');
