@@ -308,3 +308,57 @@ body.auth-pending .welcome-pet-personal .welcome-pet-heart{top:-5px;left:50%}
 .home-search-result{padding:12px 0;border-top:1px solid #e6ded7;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .home-search-result strong{flex:1;min-width:120px}.home-search-result small{color:#665f63}
 @media(max-width:640px){.home-task{align-items:stretch;flex-direction:column}.home-task>div button{flex:1}}
+
+/* v55 — mobile-first refinement: airy, accessible and compact */
+@media(max-width:650px){
+ html{scroll-padding-top:18px}
+ body:not(.auth-pending){background:#fffaf7;color:#292c2a}
+ body:not(.auth-pending)>header{min-height:68px;padding:11px 18px;background:#fffaf7;border-bottom:1px solid #f0e4e1;box-shadow:none;gap:8px}
+ body:not(.auth-pending) header .logo{font-size:26px;letter-spacing:-.6px;white-space:nowrap}
+ body:not(.auth-pending) header button{font-size:12px;min-height:42px;padding:8px 13px;box-shadow:none;border:1px solid #e8c56d;background:#fff0b3}
+ body:not(.auth-pending) .hero{display:block;min-height:0!important;padding:27px 22px 25px!important;background:linear-gradient(145deg,#ffe5e8 0%,#fff1e6 66%,#f7f0ff 100%);border-bottom:0;overflow:visible}
+ body:not(.auth-pending) .hero:before{content:'✦';font-size:25px;right:21px;top:18px;color:#e99d83}
+ body:not(.auth-pending) .hero:after{display:none}
+ body:not(.auth-pending) .hero .art{display:none!important}
+ body:not(.auth-pending) .hero .hero-eyebrow{display:inline-block;margin:0 0 12px;padding:6px 11px;border-radius:100px;background:#fffaf9aa;color:#7e525c;font-size:11px;font-weight:800;letter-spacing:1.1px;line-height:1.2}
+ body:not(.auth-pending) .hero h1{font-size:clamp(35px,9vw,48px);line-height:1.08;letter-spacing:-1.5px;max-width:390px}
+ body:not(.auth-pending) .hero h1 span{color:#cb685b}
+ body:not(.auth-pending) .hero p:not(.hero-eyebrow){font-size:15px;line-height:1.55;margin:12px 0 17px;max-width:360px}
+ body:not(.auth-pending) .hero button{width:auto;max-width:100%;min-height:46px;padding:10px 20px;background:#2d423a;color:white;font-size:14px;box-shadow:none;border:0}
+ body:not(.auth-pending) main{padding:24px 16px calc(125px + env(safe-area-inset-bottom));}
+ body:not(.auth-pending) main:before{display:none}
+ body:not(.auth-pending) main>h2{font-size:30px;line-height:1.15;margin-bottom:4px}
+ body:not(.auth-pending) main>p.muted{font-size:13px;margin-bottom:20px}
+ body:not(.auth-pending) #content h2{font-size:23px;line-height:1.2;letter-spacing:-.4px}
+ body:not(.auth-pending) .home-pets{margin-bottom:22px}
+ body:not(.auth-pending) .home-pet-grid{gap:11px}
+ body:not(.auth-pending) .home-pet-card{padding:15px;border-radius:20px;border:1px solid #eadfdc;box-shadow:0 3px 14px #372a2510}
+ body:not(.auth-pending) .home-pet-avatar{width:74px;height:74px;flex-basis:74px;border:3px solid white}
+ body:not(.auth-pending) .home-pet-card>p{font-size:13px;margin:11px 0}
+ body:not(.auth-pending) .home-pet-actions button{font-size:13px;min-height:43px;padding:9px 12px;box-shadow:none}
+ body:not(.auth-pending) .home-quick,.home-tasks{margin-bottom:20px}
+ body:not(.auth-pending) .home-quick>button{background:#f2e9ff;color:#382e4b;border:1px solid #e2d5f2;box-shadow:none;min-height:44px}
+ body:not(.auth-pending) .home-quick-actions button{background:#fff;border:1px solid #e7deda;color:#303d35;box-shadow:none;border-radius:14px;min-height:47px;font-size:13px}
+ body:not(.auth-pending) .home-tasks{border-radius:19px;padding:16px}
+ body:not(.auth-pending) .home-task button{box-shadow:none;font-size:13px}
+ body:not(.auth-pending) .cards{gap:12px}
+ body:not(.auth-pending) .card{border:1px solid #e8e0db;border-radius:20px;box-shadow:0 3px 14px #3b33220e;padding:18px}
+ body:not(.auth-pending) main .cards .card{min-height:0}
+ body:not(.auth-pending) main .cards .card:after{opacity:.3}
+ body:not(.auth-pending) .card h3{font-size:21px}
+ body:not(.auth-pending) .card h1{font-size:36px}
+ body:not(.auth-pending) .bottom{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:3px;align-items:stretch;padding:8px max(8px,env(safe-area-inset-left)) calc(9px + env(safe-area-inset-bottom));border-top:1px solid #e8e0db;background:#ffffffed;backdrop-filter:blur(18px);box-shadow:0 -4px 20px #2d25200c;border-radius:20px 20px 0 0}
+ body:not(.auth-pending) .bottom button{min-width:0;min-height:56px;padding:8px 2px;border:0;border-radius:13px;background:transparent;color:#454b48;box-shadow:none;font-size:11px;font-weight:700;line-height:1.35;white-space:normal;overflow-wrap:anywhere}
+ body:not(.auth-pending) .bottom button.active{background:#eaf5ed;color:#234c39}
+ body:not(.auth-pending) button:focus-visible,body:not(.auth-pending) summary:focus-visible,body:not(.auth-pending) [data-page]:focus-visible{outline:3px solid #315eaf;outline-offset:3px}
+ body:not(.auth-pending) button{touch-action:manipulation}
+ body:not(.auth-pending) .home-insights summary{min-height:49px;display:flex;align-items:center}
+ body:not(.auth-pending) .dialog{width:100%;max-height:85dvh;padding:18px;border-radius:23px 23px 0 0}
+ body:not(.auth-pending) .modal{align-items:end;padding:0}
+}
+@media(max-width:365px){
+ body:not(.auth-pending) header .logo{font-size:23px}
+ body:not(.auth-pending) header button{font-size:11px;padding:7px 9px}
+ body:not(.auth-pending) .bottom button{font-size:10px}
+}
+@media(prefers-reduced-motion:reduce){.home-pet-card,.bottom button{animation:none!important;transition:none!important}}
