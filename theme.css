@@ -168,3 +168,7 @@ main .record p{margin:7px 0}
  .deworm-entry-actions button,.weight-actions button{min-height:42px}
  .weight-toolbar>button{min-height:46px}
 }
+
+body:not(.auth-pending) #push-family-settings{display:none}
+body:not(.auth-pending):has(#nav button[data-page="configuracion"].active) #push-family-settings{display:block}
+#push-family-settings{max-width:950px;margin:18px auto}
