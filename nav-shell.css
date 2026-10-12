@@ -78,3 +78,7 @@ body:not(.auth-pending) #bottom{display:none!important}
 }
 @media(max-width:365px){.hs-brand{font-size:21px}.hs-header .hs-icon-button{width:36px;height:40px;min-width:36px}}
 @media(prefers-reduced-motion:reduce){.hs-header button,.hs-dropdown summary{transition:none!important}}
+
+/* Portada visible solo en Inicio; las demás secciones comienzan debajo del encabezado. */
+body:not(.auth-pending):not([data-current-page="inicio"]) .hero{display:none!important}
+.hs-header .hs-brand:focus-visible,.hs-header button:focus-visible,.hs-dropdown summary:focus-visible,.hs-drawer button:focus-visible{outline:3px solid #265da6!important;outline-offset:3px}
