@@ -153,3 +153,10 @@ main .record p{margin:7px 0}
 .deworm-pet .weight-actions button.secondary{background:#fffdfb;color:#302a29}
 .deworm-pet .deworm-entry-actions button{background:#292622;border-color:#292622;color:white}
 .deworm-pet .deworm-entry-actions button.secondary{background:transparent;border-color:#c8bdb3;color:#403a35}
+
+.home-upcoming{margin-top:20px}
+.care-event{display:flex;gap:14px;align-items:center;padding:12px 0;border-bottom:1px solid #e9ddd3}
+.care-event strong{flex-shrink:0;border-radius:12px;background:#ffebca;padding:7px 10px}
+.care-event span{overflow-wrap:anywhere}
+.home-upcoming>button{margin-top:15px}
+@media(max-width:650px){.care-event{align-items:flex-start;flex-direction:column;gap:6px}.home-upcoming{padding:16px}}
