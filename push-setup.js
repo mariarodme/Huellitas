@@ -2,12 +2,12 @@
 (async()=>{
  const key=window.HUELLITAS_VAPID_PUBLIC_KEY||'';
  if(!key)return;
- const [{getApp},{getAuth,onAuthStateChanged},{getFunctions,httpsCallable}]=await Promise.all([
+ const [{getApps,getApp,initializeApp},{getAuth,onAuthStateChanged},{getFunctions,httpsCallable}]=await Promise.all([
   import('https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js'),
   import('https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js'),
   import('https://www.gstatic.com/firebasejs/11.10.0/firebase-functions.js')
  ]);
- const auth=getAuth(getApp()),fn=getFunctions(getApp(),'us-central1');
+ const app=getApps()[0]||initializeApp({apiKey:'AIzaSyCt95w0i-LTPqLnd-kUwgj9TGb59TD3ZLo',authDomain:'huellitas-aadf9.firebaseapp.com',projectId:'huellitas-aadf9',appId:'1:374415395001:web:948888a5281f6b3b057368'});const auth=getAuth(app),fn=getFunctions(app,'us-central1');
  const register=httpsCallable(fn,'registerPush'),unregister=httpsCallable(fn,'unregisterPush');
  function toBytes(base64){const s=atob(base64.replace(/-/g,'+').replace(/_/g,'/'));return Uint8Array.from(s,c=>c.charCodeAt(0))}
  onAuthStateChanged(auth,user=>{
