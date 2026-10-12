@@ -250,3 +250,12 @@ body.auth-pending .welcome-pet{display:flex;align-items:flex-end;justify-content
 @keyframes pet-heart{0%,100%{transform:translateY(6px) scale(.8);opacity:.55}45%{transform:translateY(-3px) scale(1.16);opacity:1}}
 @keyframes pet-wiggle{0%,100%{transform:rotate(-12deg)}50%{transform:rotate(17deg)}}
 @media(prefers-reduced-motion:reduce){.welcome-pet-dog,.welcome-pet-cat,.welcome-pet-heart,.welcome-pet-paw{animation:none!important}}
+
+/* Retratos fotográficos reales: suave movimiento de las tarjetas, no video manipulado. */
+body.auth-pending .welcome-pet{height:174px;max-width:310px;align-items:center;gap:17px;background:linear-gradient(135deg,#fff0d9,#fbe1eb,#e8f6ed)}
+body.auth-pending .welcome-pet-dog,body.auth-pending .welcome-pet-cat{display:grid;place-items:center;width:118px;height:118px;flex:0 0 118px;border-radius:50%;border:5px solid #fff;box-shadow:0 8px 20px #5c463b33;background-position:center;background-size:cover;font-size:0}
+body.auth-pending .welcome-pet-dog{background-image:url("https://images.unsplash.com/photo-1693615774176-a5560f55ac49?auto=format&fit=crop&w=320&h=320&q=75")}
+body.auth-pending .welcome-pet-cat{background-image:url("https://images.unsplash.com/photo-1750007615060-55d4e0002900?auto=format&fit=crop&w=320&h=320&q=75")}
+body.auth-pending .welcome-pet-heart{top:12px;left:47%;z-index:1}
+body.auth-pending .welcome-pet-paw{right:16px;bottom:8px}
+@media(max-width:370px){body.auth-pending .welcome-pet{gap:10px}body.auth-pending .welcome-pet-dog,body.auth-pending .welcome-pet-cat{width:100px;height:100px;flex-basis:100px}}
