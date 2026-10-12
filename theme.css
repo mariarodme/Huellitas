@@ -138,3 +138,18 @@ main .record p{margin:7px 0}
 .deworm-entry-actions button{padding:7px 12px;font-size:12px;box-shadow:none}
 .deworm-empty{font-size:13px;color:#756c65}
 @media(max-width:650px){.deworm-history{padding:13px}.deworm-entry-top{align-items:flex-start;flex-direction:column}}
+
+/* Paleta de desparasitación coordinada con Huellitas */
+.deworm-pet.weight-tone-0{background:#fff1df;border-color:#edcfaa}
+.deworm-pet.weight-tone-1{background:#f0eafa;border-color:#d9c8eb}
+.deworm-pet.weight-tone-2{background:#e6f3ee;border-color:#c2ddd1}
+.deworm-pet .weight-stats>div,.deworm-pet .deworm-history{background:#fffdf9e8}
+.deworm-pet.weight-tone-0 .deworm-pill{background:#f8e0bd;color:#68491d}
+.deworm-pet.weight-tone-1 .deworm-pill{background:#e7d9f6;color:#5a3979}
+.deworm-pet.weight-tone-2 .deworm-pill{background:#d1eadf;color:#275c49}
+.deworm-pet.weight-tone-0 .weight-actions button{background:#c8814b;border-color:#c8814b}
+.deworm-pet.weight-tone-1 .weight-actions button{background:#9272bb;border-color:#9272bb}
+.deworm-pet.weight-tone-2 .weight-actions button{background:#4b947b;border-color:#4b947b}
+.deworm-pet .weight-actions button.secondary{background:#fffdfb;color:#302a29}
+.deworm-pet .deworm-entry-actions button{background:#292622;border-color:#292622;color:white}
+.deworm-pet .deworm-entry-actions button.secondary{background:transparent;border-color:#c8bdb3;color:#403a35}
