@@ -117,3 +117,22 @@ body:not(.auth-pending):not([data-current-page="inicio"]) .hero{display:none!imp
  .hs-drawer-group .hs-link{margin:3px;min-height:47px}
 }
 @media(max-width:650px){.hs-header-inner{gap:6px}.hs-brand{margin-right:auto}}
+
+/* v62: Herramientas y Configuración usan el mismo estilo que Salud */
+.hs-header .hs-all-dropdown>summary,
+.hs-header .hs-settings-link{
+ background:transparent!important;
+ color:#405247!important;
+ border-radius:12px!important;
+ box-shadow:none!important;
+ font-weight:750!important;
+}
+.hs-header .hs-all-dropdown>summary:hover,
+.hs-header .hs-settings-link:hover,
+.hs-header .hs-settings-link.is-active,
+.hs-header .hs-all-dropdown[data-has-active]>summary,
+.hs-header .hs-all-dropdown[open]>summary{
+ background:#fce8e5!important;
+ color:#8e4b45!important;
+}
+.hs-header .hs-settings-link{margin-left:0!important}
