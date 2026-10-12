@@ -42,7 +42,7 @@ function renderExtra(s){
  return '<p><button onclick="extraForm(\''+s+'\')">+ Agregar '+names[s]+'</button></p>'+(list.length?'<div class="cards">'+cards+'</div>':'<div class="empty">🐾 Todavía no hay registros.</div>');
 }
 render=function(){
- if(!Object.prototype.hasOwnProperty.call(extra,section)){originalRender();return}
+ if(!Object.prototype.hasOwnProperty.call(extra,section)){originalRender();document.getElementById('nav').innerHTML=Object.keys(names).map(s=>'<button class="'+(s===section?'active':'')+'" onclick="change(\\''+s+'\\')">'+icons[s]+' '+names[s]+'</button>').join('');document.getElementById('bottom').innerHTML=['inicio','mascotas','agenda','recordatorios','configuracion'].map(s=>'<button onclick="change(\\''+s+'\\')">'+icons[s]+'<br>'+names[s]+'</button>').join('');return}
  document.getElementById('heading').textContent=names[section];
  document.getElementById('nav').innerHTML=Object.keys(names).map(s=>'<button class="'+(s===section?'active':'')+'" onclick="change(\''+s+'\')">'+icons[s]+' '+names[s]+'</button>').join('');
  document.getElementById('bottom').innerHTML=['inicio','mascotas','agenda','recordatorios','configuracion'].map(s=>'<button onclick="change(\''+s+'\')">'+icons[s]+'<br>'+names[s]+'</button>').join('');
@@ -60,5 +60,5 @@ window.exportExpenses=function(){
  const csv='\uFEFF'+rows.map(r=>r.map(c=>'"'+String(c??'').replaceAll('"','""')+'"').join(',')).join('\r\n');
  const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='huellitas-gastos.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
 };
-originalRender();
+render();
 })();
