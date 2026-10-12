@@ -31,7 +31,7 @@ exports.unregisterPush=onCall({region:'us-central1'},async request=>{
 function due(x,now){
  if(!/^\d{4}-\d{2}-\d{2}$/.test(x.fecha||''))return false;
  const hour=/^\d{2}:\d{2}$/.test(x.hora||'')?x.hora:'09:00';
- if(hour!==now.hour)return false;
+ if(hour.slice(0,2)!==now.hour.slice(0,2)||Math.floor(Number(hour.slice(3))/5)!==Math.floor(Number(now.hour.slice(3))/5))return false;
  const start=new Date(x.fecha+'T12:00:00Z'),today=new Date(now.date+'T12:00:00Z');
  const diff=Math.round((today-start)/86400000);
  if(diff<0)return false;
@@ -56,7 +56,7 @@ exports.sendReminders=onSchedule({schedule:'every 5 minutes',timeZone:'America/C
    const dedupe=owner.collection('sentReminders').doc(idFor(now.date+'|'+now.hour+'|'+item.id));
    try{await db.runTransaction(async tx=>{const snap=await tx.get(dedupe);if(snap.exists)throw Error('already-sent');tx.create(dedupe,{at:admin.firestore.FieldValue.serverTimestamp()})})}catch{continue}
    for(const sub of subs.docs){
-    const payload=JSON.stringify({title:'🐾 Huellitas',body:(item.nombre||'Recordatorio')+' · '+(state.mascotas||[]).find(p=>p.id===item.pet)?.nombre||'Recordatorio',tag:'huellitas-'+item.id});
+    const petName=(state.mascotas||[]).find(p=>p.id===item.pet)?.nombre||'Mascota';const payload=JSON.stringify({title:'🐾 Huellitas',body:(item.nombre||'Recordatorio')+' · '+petName,tag:'huellitas-'+item.id});
     try{await webpush.sendNotification(sub.data().subscription,payload)}catch(e){if(e.statusCode===404||e.statusCode===410)await sub.ref.delete();else console.error('Push failed',e.statusCode||e.message)}
    }
   }
