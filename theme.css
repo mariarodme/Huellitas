@@ -388,3 +388,51 @@ body.auth-pending .welcome-pet-personal .welcome-pet-heart{top:-5px;left:50%}
  body:not(.auth-pending) .home-pet-actions button{min-width:0;white-space:normal;overflow-wrap:anywhere}
 }
 @media(max-width:350px){body:not(.auth-pending) .bottom-label{font-size:9px}}
+
+/* v59: functional mobile grid, compact pet cards, floating quick entry */
+.mobile-quick{display:none}
+@media(max-width:650px){
+ body:not(.auth-pending) #mobile-sections{margin:8px 0 16px!important}
+ body:not(.auth-pending) #mobile-sections #nav,
+ body:not(.auth-pending) #mobile-sections:not([open]) #nav,
+ body:not(.auth-pending) #mobile-sections[open] #nav{
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important;padding:0!important;margin:0!important;overflow:visible!important}
+ body:not(.auth-pending) #mobile-sections #nav button{
+ display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;
+ width:100%!important;min-width:0!important;min-height:67px!important;max-width:none!important;
+ padding:9px 5px!important;border:1px solid #e6ded9!important;border-radius:15px!important;
+ background:#fff!important;box-shadow:0 2px 8px #3329200a!important;color:#303832!important;
+ font-size:12px!important;font-weight:750!important;line-height:1.3!important;white-space:normal!important;
+ overflow-wrap:anywhere!important;text-align:center!important}
+ body:not(.auth-pending) #mobile-sections #nav button.active{background:#e8f5ed!important;border-color:#88baa0!important}
+ body:not(.auth-pending) .hero{padding:20px 18px!important}
+ body:not(.auth-pending) .hero h1{font-size:clamp(28px,7vw,36px)}
+ body:not(.auth-pending) .hero p:not(.hero-eyebrow){font-size:13px;margin:9px 0 13px}
+ body:not(.auth-pending) .hero .hero-eyebrow{font-size:10px}
+ body:not(.auth-pending) .hero button{min-height:44px}
+ body:not(.auth-pending) #content>.cards{grid-template-columns:1fr;gap:10px}
+ body:not(.auth-pending)[data-current-page="mascotas"] #content .card{padding:13px!important;border-radius:17px!important}
+ body:not(.auth-pending)[data-current-page="mascotas"] #content .card h3{font-size:19px!important;margin:3px 0}
+ body:not(.auth-pending)[data-current-page="mascotas"] #content .card p{margin:3px 0 10px}
+ body:not(.auth-pending)[data-current-page="mascotas"] #content .card img{width:62px!important;height:62px!important}
+ body:not(.auth-pending)[data-current-page="mascotas"] #content .card button{font-size:12px!important;padding:9px 10px!important;min-height:42px;margin:3px 3px 3px 0;box-shadow:none!important}
+ body:not(.auth-pending) .mobile-quick{display:block;position:fixed;right:16px;bottom:calc(91px + env(safe-area-inset-bottom));z-index:105}
+ body:not(.auth-pending) #mobile-quick-toggle{display:grid;place-items:center;width:56px;height:56px;border-radius:50%;border:2px solid #fff;background:#315846;color:#fff;box-shadow:0 5px 18px #2843334d;font-size:34px;font-weight:400;padding:0}
+ body:not(.auth-pending) .mobile-quick-panel{position:absolute;right:0;bottom:66px;width:min(310px,calc(100vw - 32px));padding:15px;border-radius:20px;border:1px solid #e5dad4;background:#fffdfb;box-shadow:0 12px 34px #1e312c33}
+ body:not(.auth-pending) .mobile-quick-panel[hidden]{display:none!important}
+ body:not(.auth-pending) .mobile-quick-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+ body:not(.auth-pending) .mobile-quick-heading button{padding:5px 10px;background:#f4ece9;color:#33483c}
+ body:not(.auth-pending) .mobile-quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+ body:not(.auth-pending) .mobile-quick-grid button{min-height:48px;padding:8px;border-radius:13px;background:#f3f5ee;color:#2b4a3c;border:1px solid #dfe7da;font-size:13px}
+ body:not(.auth-pending) .calendar-grid{gap:3px}
+ body:not(.auth-pending) .calendar-day.mobile-calendar-day{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;min-width:0;min-height:49px;padding:6px 2px;border-radius:10px;border:1px solid #e7e3db;background:#fff;color:#273e32;box-shadow:none;font-size:13px;overflow:hidden}
+ body:not(.auth-pending) .calendar-day.mobile-calendar-day.selected{background:#e5f4eb;border:2px solid #438761}
+ body:not(.auth-pending) .mobile-calendar-day .calendar-event{font-size:8px;line-height:1.1;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+ body:not(.auth-pending) .calendar-selected{margin-top:14px;padding:14px;border-radius:15px;background:#f5f7ee}
+ body:not(.auth-pending) input,body:not(.auth-pending) select,body:not(.auth-pending) textarea{font-size:16px;min-height:46px}
+ body:not(.auth-pending) .dialog{padding-bottom:calc(20px + env(safe-area-inset-bottom));overscroll-behavior:contain}
+ body:not(.auth-pending) .dialog .actions{position:sticky;bottom:-20px;background:#fffaf5;padding:12px 0;z-index:2}
+ body:not(.auth-pending) button:focus-visible,body:not(.auth-pending) input:focus-visible,body:not(.auth-pending) select:focus-visible{outline:3px solid #245da8!important;outline-offset:2px}
+}
+@media(max-width:365px){body:not(.auth-pending) #mobile-sections #nav{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(prefers-reduced-motion:reduce){.mobile-quick *{animation:none!important;transition:none!important}}
