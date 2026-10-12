@@ -206,3 +206,15 @@ body:not(.auth-pending) main>p.hs-page-subtitle{display:none!important}
  .hs-drawer .hs-mobile-section-links .hs-link.is-active{background:#e9f3eb!important;border-color:#cce1d1!important}
  .hs-drawer .hs-mobile-search{width:100%!important;min-height:46px!important;margin:0!important;border:1px solid #d9e5d9!important;border-radius:13px!important;background:#eff7ef!important;color:#365c46!important;font-size:13px!important;font-weight:750!important;box-shadow:none!important}
 }
+
+/* v75 — every mobile navigation item uses the same quick-access tile */
+@media(max-width:900px){
+ .hs-mobile-section-links{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important}
+ .hs-mobile-section-links .hs-mobile-tile{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:7px!important;min-width:0!important;width:100%!important;min-height:83px!important;padding:9px 4px!important;margin:0!important;background:#fff!important;border:1px solid #eee4de!important;border-radius:15px!important;box-shadow:none!important;color:#3e5546!important;font-size:12px!important;font-weight:750!important;line-height:1.2!important;text-align:center!important;white-space:normal!important}
+ .hs-mobile-section-links .hs-mobile-tile.is-active{background:#e9f3eb!important;border-color:#cce1d1!important;color:#29573c!important}
+ .hs-mobile-section-links .hs-mobile-tile-icon{display:grid!important;place-items:center!important;width:34px!important;height:34px!important;border-radius:11px!important;background:#fff0eb!important;font-size:19px!important}
+ .hs-mobile-footer{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:4px 0 18px}
+ .hs-drawer .hs-mobile-share{grid-column:1/-1;min-height:49px!important;border:1px solid #c7dfce!important;border-radius:13px!important;background:#e8f3ea!important;color:#285b40!important;font-size:14px!important;font-weight:800!important;box-shadow:none!important}
+ .hs-drawer .hs-mobile-search,.hs-drawer .hs-mobile-backup{width:100%!important;min-height:44px!important;margin:0!important;padding:9px!important;border:1px solid #eaded7!important;border-radius:12px!important;background:#fff!important;color:#435b4c!important;font-size:12px!important;font-weight:700!important;box-shadow:none!important}
+ .hs-mobile-footer p{grid-column:1/-1;margin:0!important;font-size:11px!important;color:#887c75!important;line-height:1.5!important}
+}
