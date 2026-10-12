@@ -282,3 +282,16 @@ body.auth-pending .welcome-pet-personal .welcome-pet-heart{top:-5px;left:50%}
 .home-pet-card>p{min-height:44px;line-height:1.5;font-size:14px}
 .home-pet-actions{display:flex;flex-wrap:wrap;gap:7px}.home-pet-actions button{flex:1;min-width:85px}
 @media(max-width:850px){.home-pet-grid{grid-template-columns:1fr}.home-pet-card{padding:14px}.home-pet-card>p{min-height:0}.home-pet-avatar{width:68px;height:68px;flex-basis:68px}}
+
+/* Mejoras de inicio: registro rápido y paneles compactos */
+.home-quick,.home-insights{margin:0 0 20px}.home-quick h2{margin:0 0 10px}
+.home-quick-actions{display:flex;gap:9px;flex-wrap:wrap;margin:10px 0}
+.home-quick-actions button{flex:1 1 135px;min-height:43px}
+.home-insights{display:grid;gap:10px}
+.home-insights details{background:#fff9f3;border:1px solid #e8dcd6;border-radius:16px;overflow:hidden}
+.home-insights summary{padding:15px 17px;cursor:pointer;font-weight:700}
+.home-insight-body{padding:0 17px 15px}
+.home-insight-body>p{border-top:1px solid #ece1db;padding-top:9px;line-height:1.5}
+.home-emergency{background:#f0f7ed;border-radius:14px;padding:12px;margin:9px 0}
+.home-emergency p{margin:5px 0}
+@media(max-width:440px){.home-quick-actions{gap:7px}.home-quick-actions button{flex-basis:calc(50% - 7px);font-size:14px}}
