@@ -56,6 +56,7 @@ exports.sendReminders=onSchedule({schedule:'every 5 minutes',timeZone:'America/C
    const dedupe=owner.collection('sentReminders').doc(idFor(now.date+'|'+now.hour+'|'+item.id));
    try{await db.runTransaction(async tx=>{const snap=await tx.get(dedupe);if(snap.exists)throw Error('already-sent');tx.create(dedupe,{at:admin.firestore.FieldValue.serverTimestamp()})})}catch{continue}
    for(const sub of subs.docs){
+    if(sub.data().uid!==owner.id){const access=await owner.collection('sharing').doc('access').get();if(access.data()?.members?.[sub.data().uid]!==true){await sub.ref.delete();continue}}
     const petName=(state.mascotas||[]).find(p=>p.id===item.pet)?.nombre||'Mascota';const payload=JSON.stringify({title:'🐾 Huellitas',body:(item.nombre||'Recordatorio')+' · '+petName,tag:'huellitas-'+item.id});
     try{await webpush.sendNotification(sub.data().subscription,payload)}catch(e){if(e.statusCode===404||e.statusCode===410)await sub.ref.delete();else console.error('Push failed',e.statusCode||e.message)}
    }
