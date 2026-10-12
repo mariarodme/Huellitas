@@ -3,6 +3,7 @@
 'use strict';
 const K='huellitas-v1', sections={buscar:'🔎 Buscar',inicio:'🏡 Inicio',mascotas:'🐾 Mascotas',agenda:'📅 Agenda',vacunas:'💉 Vacunas',medicamentos:'💊 Medicamentos',gastos:'💰 Gastos',salud:'🩺 Historial médico',desparasitacion:'🪱 Desparasitación',alimentacion:'🥣 Alimentación',peso:'⚖️ Peso',recordatorios:'🔔 Recordatorios',dosis:'💊 Dosis',documentos:'📁 Documentos',identificacion:'🪪 Carné digital',calendario:'🗓️ Calendario',contactos:'☎️ Contactos',galeria:'📷 Galería',configuracion:'⚙️ Configuración',diagnostico:'🧪 Diagnóstico',familia:'👪 Familia'};
 let state;try{state=JSON.parse(localStorage.getItem(K))||{}}catch{state={}};if(!state||typeof state!=='object'||Array.isArray(state))state={};for(const k of Object.keys(sections))if(!['inicio','identificacion','calendario','diagnostico','familia'].includes(k)&&!Array.isArray(state[k]))state[k]=[];
+const sectionMenu=document.getElementById('mobile-sections');if(sectionMenu){const adjust=()=>{if(window.matchMedia('(max-width:650px)').matches)sectionMenu.open=false;else sectionMenu.open=true};adjust();window.addEventListener('resize',()=>{if(!window.matchMedia('(max-width:650px)').matches)sectionMenu.open=true})}
 let page='inicio',month=new Date().getMonth(),year=new Date().getFullYear();
 const $=id=>document.getElementById(id),escape=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[c]));
 const date=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
@@ -120,7 +121,7 @@ function checkReminders(){
 setInterval(checkReminders,30000);
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')checkReminders()});
 setTimeout(checkReminders,1500);
-function go(s){if(!sections[s])return;page=s;const menu=$('mobile-sections');if(menu)menu.open=false;render();window.scrollTo({top:0,behavior:'instant'})}
+function go(s){if(!sections[s])return;page=s;const menu=$('mobile-sections');if(menu&&window.matchMedia('(max-width:650px)').matches)menu.open=false;render();window.scrollTo({top:0,behavior:'instant'})}
 function download(name,blob){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),2000)}
 document.addEventListener('click',async e=>{const btn=e.target.closest('button,[data-page]');if(!btn)return;try{
  if(btn.dataset.page){go(btn.dataset.page);return}
