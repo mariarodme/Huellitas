@@ -8,7 +8,7 @@ const $=id=>document.getElementById(id),escape=v=>String(v??'').replace(/[&<>"']
 const date=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
 const pet=id=>state.mascotas.find(p=>p.id===id)?.nombre||'';
 function save(){try{localStorage.setItem(K,JSON.stringify(state));render()}catch{alert('No se pudo guardar: almacenamiento lleno o bloqueado.')}}
-function nav(){const keys=Object.keys(sections);$('nav').innerHTML=keys.map(k=>'<button data-page="'+k+'" class="'+(page===k?'active':'')+'">'+sections[k]+'</button>').join('');$('bottom').innerHTML=['inicio','mascotas','agenda','recordatorios','configuracion'].map(k=>'<button data-page="'+k+'">'+sections[k]+'</button>').join('')}
+function nav(){const keys=Object.keys(sections);$('nav').innerHTML=keys.map(k=>'<button data-page="'+k+'" class="'+(page===k?'active':'')+'">'+sections[k]+'</button>').join('');$('bottom').innerHTML=['inicio','mascotas','calendario','recordatorios','configuracion'].map(k=>'<button data-page="'+k+'" class="'+(page===k?'active':'')+'">'+sections[k]+'</button>').join('')}
 function render(){nav();$('heading').textContent=sections[page];const el=$('content');
  if(page==='inicio'){
  const upcoming=['agenda','vacunas','recordatorios','desparasitacion'].flatMap(k=>state[k].map(x=>({...x,kind:k,when:k==='vacunas'?(x.proximaFecha||x.fecha):x.fecha}))).filter(x=>x.when&&x.when>=date()).sort((a,b)=>a.when.localeCompare(b.when)).slice(0,6);
