@@ -83,5 +83,32 @@ render=function(){
    }
  }
 };
+
+/* More pet-care modules, stored locally until Supabase is configured */
+const newModules={salud:'🩺',desparasitacion:'🪱',alimentacion:'🥣'};
+Object.assign(names,{salud:'Historial médico',desparasitacion:'Desparasitación',alimentacion:'Alimentación'});
+Object.assign(icons,newModules);
+for(const k of Object.keys(newModules))if(!Array.isArray(data[k]))data[k]=[];
+const dashboardRender=render;
+render=function(){
+ if(Object.prototype.hasOwnProperty.call(newModules,section)){
+   document.getElementById('heading').textContent=names[section];
+   document.getElementById('nav').innerHTML=Object.keys(names).map(s=>'<button class="'+(s===section?'active':'')+'" data-section="'+s+'">'+icons[s]+' '+names[s]+'</button>').join('');
+   document.getElementById('bottom').innerHTML=['inicio','mascotas','agenda','salud','configuracion'].map(s=>'<button data-section="'+s+'">'+icons[s]+'<br>'+names[s]+'</button>').join('');
+   document.querySelectorAll('[data-section]').forEach(b=>b.onclick=()=>change(b.dataset.section));
+   const items=data[section];
+   document.getElementById('content').innerHTML='<p><button id="addModule">+ Agregar registro</button></p>'+(items.length?'<div class="cards">'+items.map(x=>'<div class="card"><h3>'+esc(x.nombre)+'</h3><p>'+esc(data.mascotas.find(p=>p.id===x.pet)?.nombre||'')+' · '+esc(x.fecha||'')+'</p><p>'+esc(x.notas||'')+'</p><button class="secondary" data-delete="'+esc(x.id)+'">Eliminar</button></div>').join('')+'</div>':'<div class="empty">🐾 Aún no hay registros.</div>');
+   document.getElementById('addModule').onclick=()=>moduleForm(section);
+   document.querySelectorAll('[data-delete]').forEach(b=>b.onclick=()=>{if(confirm('¿Eliminar registro?')){data[section]=data[section].filter(x=>x.id!==b.dataset.delete);persist()}});
+   return;
+ }
+ dashboardRender();
+};
+function moduleForm(s){
+ if(!data.mascotas.length){alert('Primero agrega una mascota.');change('mascotas');return}
+ document.getElementById('modal').innerHTML='<div class="modal"><div class="dialog"><h2>'+names[s]+'</h2><form id="moduleForm"><label>Mascota</label><select name="pet">'+data.mascotas.map(p=>'<option value="'+esc(p.id)+'">'+esc(p.nombre)+'</option>').join('')+'</select><label>'+ (s==='salud'?'Consulta o diagnóstico':s==='desparasitacion'?'Producto o tratamiento':'Alimento o dieta')+'</label><input name="nombre" required maxlength="150"><label>Fecha</label><input type="date" name="fecha" required value="'+today()+'"><label>Notas</label><textarea name="notas" maxlength="3000"></textarea><div class="actions"><button type="button" class="secondary" id="cancelModule">Cancelar</button><button>Guardar</button></div></form></div></div>';
+ document.getElementById('cancelModule').onclick=closeForm;
+ document.getElementById('moduleForm').onsubmit=e=>{e.preventDefault();data[s].push({id:crypto.randomUUID(),...Object.fromEntries(new FormData(e.target))});closeForm();persist()};
+}
 render();
 })();
