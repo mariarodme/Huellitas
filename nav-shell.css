@@ -136,3 +136,30 @@ body:not(.auth-pending):not([data-current-page="inicio"]) .hero{display:none!imp
  color:#8e4b45!important;
 }
 .hs-header .hs-settings-link{margin-left:0!important}
+
+/* v63: strictly uniform appearance for every top-level desktop navigation item */
+@media(min-width:901px){
+ body:not(.auth-pending) .hs-header .hs-desktop-links>.hs-main-link,
+ body:not(.auth-pending) .hs-header .hs-desktop-links>.hs-settings-link,
+ body:not(.auth-pending) .hs-header .hs-desktop-links>.hs-all-dropdown>summary{
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  gap:8px!important;min-height:45px!important;padding:10px 13px!important;
+  margin:0!important;border:0!important;border-radius:12px!important;
+  background:transparent!important;color:#405247!important;
+  font-size:14px!important;font-weight:750!important;line-height:1.3!important;
+  box-shadow:none!important;transform:none!important;letter-spacing:normal!important;
+ }
+ body:not(.auth-pending) .hs-header .hs-desktop-links>.hs-main-link:hover,
+ body:not(.auth-pending) .hs-header .hs-desktop-links>.hs-settings-link:hover,
+ body:not(.auth-pending) .hs-header .hs-desktop-links>.hs-all-dropdown>summary:hover{
+  background:#f7efeb!important;color:#405247!important
+ }
+ body:not(.auth-pending) .hs-header .hs-desktop-links>.hs-main-link.is-active,
+ body:not(.auth-pending) .hs-header .hs-desktop-links>.hs-settings-link.is-active,
+ body:not(.auth-pending) .hs-header .hs-desktop-links>.hs-all-dropdown[open]>summary{
+  background:#fce8e5!important;color:#8e4b45!important
+ }
+ body:not(.auth-pending) .hs-header .hs-desktop-links>.hs-all-dropdown[data-has-active]:not([open])>summary{
+  background:transparent!important;color:#405247!important
+ }
+}
