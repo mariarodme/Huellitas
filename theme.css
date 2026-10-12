@@ -219,3 +219,9 @@ input,select,textarea{max-width:100%;min-width:0}
  .calendar-event{overflow-wrap:anywhere}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* Navegación completa también en celular: las cinco opciones inferiores son accesos rápidos. */
+@media(max-width:650px){
+ main #nav{display:flex!important;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;gap:9px;padding:4px 2px 12px;margin:14px 0 18px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+ main #nav button{flex:0 0 auto;scroll-snap-align:start;white-space:nowrap;min-height:46px}
+}
