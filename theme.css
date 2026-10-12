@@ -46,3 +46,23 @@ input,select,textarea{background:white;border:2px solid #59574e;border-radius:13
 @media(max-width:800px){.hero{min-height:auto;padding:48px 24px;gap:32px;grid-template-columns:1fr 1fr}.hero h1{font-size:clamp(46px,7vw,68px)}.hero .art{height:330px}}
 @media(max-width:650px){header{min-height:74px;padding:12px 18px}.logo{font-size:27px}header button{font-size:12px;padding:9px 12px}.hero{grid-template-columns:1fr;padding:42px 22px 55px;gap:30px}.hero h1{font-size:clamp(53px,12vw,76px);letter-spacing:-2px}.hero p{font-size:17px;margin:18px 0 24px}.hero .art{height:320px;max-width:400px;margin:auto;transform:rotate(2deg);box-shadow:9px 10px 0 var(--yellow)}.hero:before{top:12px;left:auto;right:22px;font-size:36px}.hero:after{font-size:40px}.hero button{width:100%}main{padding:35px 18px 130px}main>h2{font-size:39px}.cards{grid-template-columns:1fr;gap:17px}.card{padding:23px;box-shadow:4px 5px 0 #d8c6b6}.bottom{display:flex;z-index:10;align-items:center;justify-content:space-around;padding:9px max(5px,env(safe-area-inset-left)) calc(10px + env(safe-area-inset-bottom));gap:3px;border-top:2px solid var(--ink);box-shadow:0 -4px 20px #0001}.bottom button{font-family:'DM Sans',sans-serif;font-weight:800;border:0;box-shadow:none;background:transparent;font-size:11px;color:var(--ink);padding:8px 3px;min-width:56px}.bottom button:hover{transform:none;box-shadow:none}nav{display:none}.dialog{padding:20px}.hero .art{background-position:center 40%}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}button{transition:none}}
+
+/* Refined internal pages */
+main{position:relative}
+main:before{content:"✿";position:absolute;right:28px;top:24px;color:#ed8c64;font-size:42px;pointer-events:none}
+main>h2{max-width:90%}
+main>p>button{background:var(--yellow);color:var(--ink);font-size:16px}
+main .cards .card{min-height:185px;position:relative;overflow:hidden}
+main .cards .card:after{content:"✦";position:absolute;right:18px;top:12px;font-size:25px;color:#e3a67d;opacity:.8;pointer-events:none}
+main .cards .card h3{padding-right:24px}
+main .cards .card button{margin-top:8px}
+main .record{align-items:flex-start}
+main .record p{margin:7px 0}
+#content>.card{margin-top:18px}
+#content>.card h3{font-size:27px}
+#content>.card>p{font-size:16px;line-height:1.6}
+#content>.empty{background:#e9f2d5;padding:54px 24px;min-height:170px}
+.dialog form{display:grid;grid-template-columns:1fr}
+.dialog .actions{position:sticky;bottom:-25px;background:var(--cream);padding:15px 0 3px}
+#content .card img{display:block;width:100%;object-fit:cover;margin-bottom:16px;border:2px solid var(--ink)}
+@media(max-width:650px){main:before{top:14px;right:20px;font-size:26px}main .cards .card{min-height:155px}main .record{flex-direction:column}main .record button{align-self:flex-end}#content>.empty{padding:36px 18px}}
