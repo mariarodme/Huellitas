@@ -25,6 +25,51 @@ function showForm(id){if(page!=='mascotas'&&page!=='contactos'&&!state.mascotas.
  $('modal').innerHTML='<div class="modal"><div class="dialog"><h2>'+sections[page]+'</h2><form id="petEntry">'+fields+'<div class="actions"><button type="button" data-action="cancel" class="secondary">Cancelar</button><button type="submit">Guardar</button></div></form></div></div>';
  $('petEntry').onsubmit=e=>{e.preventDefault();const v=Object.fromEntries(new FormData(e.target));if(id)Object.assign(old,v);else state[page].push({id:crypto.randomUUID(),...v});$('modal').innerHTML='';save()};
 }
+
+// Recordatorios locales: solo mientras la app está abierta; no son push en segundo plano.
+const notified=new Set();
+function reminderDate(x,now){
+ if(!/^\\d{4}-\\d{2}-\\d{2}$/.test(x.fecha||''))return null;
+ const h=/^\\d{2}:\\d{2}$/.test(x.hora||'')?x.hora:'09:00';
+ const d=new Date(x.fecha+'T'+h+':00');if(!Number.isFinite(d.getTime()))return null;
+ const mode=(x.repeticion||'Una vez').toLowerCase();
+ if(d>now||mode==='una vez')return d;
+ if(mode==='diaria'||mode==='semanal'){
+  const step=mode==='diaria'?1:7;
+  while(d<now)d.setDate(d.getDate()+step);
+ }else if(mode==='mensual'){
+  const day=d.getDate();while(d<now){d.setDate(1);d.setMonth(d.getMonth()+1);d.setDate(Math.min(day,new Date(d.getFullYear(),d.getMonth()+1,0).getDate()))}
+ }
+ return d;
+}
+function checkReminders(){
+ if(document.visibilityState!=='visible'||!Array.isArray(state.recordatorios))return;
+ const now=new Date(),cutoff=new Date(now.getTime()-120000);
+ for(const x of state.recordatorios){
+  const due=reminderDate(x,cutoff);
+  if(!due||due>now||now-due>120000)continue;
+  const key=x.id+'-'+due.getTime();
+  if(notified.has(key))continue;
+  try{
+   const log=JSON.parse(localStorage.getItem('huellitas-notified')||'{}');
+   if(log[key]){notified.add(key);continue}
+   log[key]=Date.now();for(const k of Object.keys(log))if(Date.now()-log[k]>604800000)delete log[k];
+   localStorage.setItem('huellitas-notified',JSON.stringify(log));
+  }catch{}
+  notified.add(key);
+  const title='🐾 Huellitas: '+String(x.nombre||'Recordatorio').slice(0,80);
+  const body='Para '+(pet(x.pet)||'tu mascota');
+  if('Notification'in window&&Notification.permission==='granted'){
+   if('serviceWorker'in navigator)navigator.serviceWorker.getRegistration('./').then(reg=>reg?reg.showNotification(title,{body,icon:'./icon.svg',tag:key}):new Notification(title,{body})).catch(()=>alert(title+' — '+body));
+   else try{new Notification(title,{body})}catch{alert(title+' — '+body)}
+  }else{
+   const box=document.createElement('div');box.setAttribute('role','alert');box.style.cssText='position:fixed;top:10px;right:10px;z-index:9999;background:#ffdf70;border:2px solid #26251f;border-radius:16px;padding:18px;max-width:300px';box.textContent=title+' — '+body+' (toca para cerrar)';box.onclick=()=>box.remove();document.body.append(box);
+  }
+ }
+}
+setInterval(checkReminders,30000);
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')checkReminders()});
+setTimeout(checkReminders,1500);
 function go(s){if(!sections[s])return;page=s;render()}
 function download(name,blob){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),2000)}
 document.addEventListener('click',async e=>{const btn=e.target.closest('button');if(!btn)return;try{
