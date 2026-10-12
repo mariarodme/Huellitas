@@ -237,3 +237,16 @@ body:not(.auth-pending):has(#nav button[data-page="configuracion"].active) #huel
 body.auth-pending #cloud-status{display:none}
 body.auth-pending #cloud-title{text-align:center}
 body.auth-pending #cloud-controls>p:first-child{text-align:center}
+
+/* Mascotas animadas de bienvenida: ligeras, sin descargas externas. */
+.welcome-pet{display:none}
+body.auth-pending .welcome-pet{display:flex;align-items:flex-end;justify-content:center;gap:6px;position:relative;max-width:250px;height:126px;margin:0 auto 10px;border-radius:28px;background:linear-gradient(160deg,#fff0d9,#fce2eb 55%,#e5f5ed);overflow:hidden}
+.welcome-pet-dog,.welcome-pet-cat{font-size:70px;line-height:1.4;display:inline-block;transform-origin:50% 85%}
+.welcome-pet-dog{animation:pet-bounce 2.4s ease-in-out infinite}
+.welcome-pet-cat{animation:pet-bounce 2.4s ease-in-out .45s infinite}
+.welcome-pet-heart{position:absolute;top:7px;left:48%;font-size:23px;color:#e76e8d;animation:pet-heart 2.5s ease-in-out infinite}
+.welcome-pet-paw{position:absolute;right:15px;bottom:6px;font-size:19px;animation:pet-wiggle 3s ease-in-out infinite}
+@keyframes pet-bounce{0%,55%,100%{transform:translateY(0) rotate(0)}25%{transform:translateY(-12px) rotate(-5deg)}38%{transform:translateY(-4px) rotate(4deg)}}
+@keyframes pet-heart{0%,100%{transform:translateY(6px) scale(.8);opacity:.55}45%{transform:translateY(-3px) scale(1.16);opacity:1}}
+@keyframes pet-wiggle{0%,100%{transform:rotate(-12deg)}50%{transform:rotate(17deg)}}
+@media(prefers-reduced-motion:reduce){.welcome-pet-dog,.welcome-pet-cat,.welcome-pet-heart,.welcome-pet-paw{animation:none!important}}
