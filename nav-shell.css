@@ -167,3 +167,6 @@ body:not(.auth-pending):not([data-current-page="inicio"]) .hero{display:none!imp
 /* v65: Hide redundant Inicio heading and subtitle; top navigation already identifies page */
 body:not(.auth-pending)[data-current-page="inicio"] main>.hs-page-heading,
 body:not(.auth-pending)[data-current-page="inicio"] main>.hs-page-subtitle{display:none!important}
+
+/* v69: fit Calendario alongside the other visible desktop links */
+@media(min-width:901px) and (max-width:1300px){.hs-header-inner{gap:6px!important;padding-inline:12px!important}.hs-header .hs-desktop-links>.hs-main-link,.hs-header .hs-desktop-links>.hs-settings-link,.hs-header .hs-desktop-links>.hs-all-dropdown>summary{padding:9px 7px!important;gap:5px!important;font-size:12px!important}.hs-brand{font-size:23px!important}.hs-brand-mark{width:34px;height:34px}}
