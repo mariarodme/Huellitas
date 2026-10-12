@@ -10,7 +10,7 @@ const pet=id=>state.mascotas.find(p=>p.id===id)?.nombre||'';
 function save(){try{localStorage.setItem(K,JSON.stringify(state));render()}catch{alert('No se pudo guardar: almacenamiento lleno o bloqueado.')}}
 function nav(){const keys=Object.keys(sections);$('nav').innerHTML=keys.map(k=>'<button data-page="'+k+'" class="'+(page===k?'active':'')+'">'+sections[k]+'</button>').join('');$('bottom').innerHTML=['inicio','mascotas','agenda','recordatorios','configuracion'].map(k=>'<button data-page="'+k+'">'+sections[k]+'</button>').join('')}
 function render(){nav();$('heading').textContent=sections[page];const el=$('content');
- if(page==='inicio'){el.innerHTML='<div class="cards"><button type="button" data-page="mascotas" class="card" style="display:block;width:100%;text-align:left;cursor:pointer;color:inherit;font:inherit"><h3>Mascotas</h3><h1>'+state.mascotas.length+'</h1><span>Ver perfiles →</span></button><div class="card"><h3>Citas</h3><h1>'+state.agenda.length+'</h1></div><div class="card"><h3>Gastos</h3><h1>₡'+state.gastos.reduce((n,x)=>n+Number(x.monto||0),0).toLocaleString('es-CR')+'</h1></div></div><p><button data-action="addpet">+ Agregar mascota</button></p>';return}
+ if(page==='inicio'){el.innerHTML='<div class="cards"><div data-page="mascotas" role="button" tabindex="0" aria-label="Abrir perfiles de mascotas" class="card" style="cursor:pointer;position:relative;z-index:1;touch-action:manipulation"><h3>Mascotas</h3><h1>'+state.mascotas.length+'</h1><button type="button" data-page="mascotas">Ver perfiles →</button></div><div class="card"><h3>Citas</h3><h1>'+state.agenda.length+'</h1></div><div class="card"><h3>Gastos</h3><h1>₡'+state.gastos.reduce((n,x)=>n+Number(x.monto||0),0).toLocaleString('es-CR')+'</h1></div></div><p><button data-action="addpet">+ Agregar mascota</button></p>';return}
  if(page==='documentos'&&window.HuellitasDocs){window.HuellitasDocs.render(el,state.mascotas);return}
  if(page==='familia'){el.innerHTML='<div class="card"><h3>Familia</h3><p>Compartir cuentas estará disponible después de configurar Supabase.</p></div>';return}
  if(page==='configuracion'){el.innerHTML='<div class="cards"><div class="card"><h3>Respaldo</h3><button data-action="backup">Descargar JSON</button></div><div class="card"><h3>Restaurar</h3><input type="file" id="restore" accept=".json,application/json"><button data-action="restore">Restaurar respaldo</button></div><div class="card"><h3>Importar registros sin borrar los actuales</h3><input type="file" id="importRecords" accept=".json,application/json"><button data-action="importRecords">Importar registros</button></div><div class="card"><h3>Notificaciones</h3><button data-action="permission">Activar avisos</button> <button data-action="test">Aviso de prueba</button><p>Los avisos automáticos con la app cerrada necesitan un servidor.</p></div></div>';return}
@@ -77,7 +77,7 @@ document.addEventListener('visibilitychange',()=>{if(document.visibilityState===
 setTimeout(checkReminders,1500);
 function go(s){if(!sections[s])return;page=s;render()}
 function download(name,blob){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),2000)}
-document.addEventListener('click',async e=>{const btn=e.target.closest('button');if(!btn)return;try{
+document.addEventListener('click',async e=>{const btn=e.target.closest('button,[data-page]');if(!btn)return;try{
  if(btn.dataset.page){go(btn.dataset.page);return}
  const a=btn.dataset.action,id=btn.dataset.id;
  if(a==='profile'){showProfile(id);return}
@@ -93,6 +93,7 @@ document.addEventListener('click',async e=>{const btn=e.target.closest('button')
  if(a==='test'){if(!('Notification'in window)||Notification.permission!=='granted')return alert('Primero activa los permisos.');const reg='serviceWorker'in navigator?await navigator.serviceWorker.ready:null;if(reg)await reg.showNotification('🐾 Huellitas',{body:'Aviso de prueba',icon:'./icon.svg'});else new Notification('🐾 Huellitas',{body:'Aviso de prueba'});return}
  if(a==='qr'){const p=state.mascotas.find(x=>x.id===id),target=$('qr-'+id);if(!p||!target)return;target.replaceChildren();if(typeof QRCode==='undefined')return target.textContent='El generador QR necesita conexión a internet.';new QRCode(target,{text:'Huellitas | '+p.nombre+' | '+p.especie,width:180,height:180});return}
  }catch(err){console.error(err);alert('No se pudo completar la acción: '+err.message)}});
+document.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('[role="button"][data-page]')){e.preventDefault();go(e.target.dataset.page)}});
 window.change=go;window.form=()=>showForm();window.backup=()=>download('huellitas-respaldo.json',new Blob([JSON.stringify(state,null,2)],{type:'application/json'}));
 render();
 })();
