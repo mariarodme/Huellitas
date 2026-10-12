@@ -172,3 +172,16 @@ main .record p{margin:7px 0}
 body:not(.auth-pending) #push-family-settings{display:none}
 body:not(.auth-pending):has(#nav button[data-page="configuracion"].active) #push-family-settings{display:block}
 #push-family-settings{max-width:950px;margin:18px auto}
+
+/* Panel de cuidados y filtros: pastel Huellitas */
+.care-dashboard{margin-top:18px;background:#fffdf9}
+.care-dashboard h3{margin:14px 0 8px}
+.care-badge{display:inline-flex;align-items:center;white-space:nowrap;border-radius:99px;padding:7px 10px;font-size:12px;font-weight:750}
+.care-badge.late{background:#ffe0de;color:#8a3030}
+.care-badge.soon{background:#fff0c9;color:#76521c}
+.care-badge.ok{background:#def1e6;color:#2d6249}
+.record-filters{display:grid;grid-template-columns:1fr minmax(160px,240px);gap:12px;margin:12px 0 18px;padding:14px;background:#fff5eb;border-radius:18px}
+.record-filters label{margin:0}
+.record-filters input,.record-filters select{margin-top:6px;background:white}
+.record-result[hidden]{display:none!important}
+@media(max-width:650px){.record-filters{grid-template-columns:1fr}.care-badge{white-space:normal}.care-dashboard .care-event{align-items:flex-start;gap:8px}}
