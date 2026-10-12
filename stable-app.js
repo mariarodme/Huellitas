@@ -135,6 +135,8 @@ document.addEventListener('click',async e=>{const btn=e.target.closest('button,[
  if(a==='test'){if(!('Notification'in window)||Notification.permission!=='granted')return alert('Primero activa los permisos.');const reg='serviceWorker'in navigator?await navigator.serviceWorker.ready:null;if(reg)await reg.showNotification('🐾 Huellitas',{body:'Aviso de prueba',icon:'./icon.svg'});else new Notification('🐾 Huellitas',{body:'Aviso de prueba'});return}
  if(a==='qr'){const p=state.mascotas.find(x=>x.id===id),target=$('qr-'+id);if(!p||!target)return;target.replaceChildren();if(typeof QRCode==='undefined')return target.textContent='El generador QR necesita conexión a internet.';new QRCode(target,{text:'Huellitas | '+p.nombre+' | '+p.especie,width:180,height:180});return}
  }catch(err){console.error(err);alert('No se pudo completar la acción: '+err.message)}});
+document.addEventListener('input',e=>{if(e.target.id!=='record-search'&&e.target.id!=='record-pet')return;const term=($('record-search')?.value||'').trim().toLowerCase(),petId=$('record-pet')?.value||'';document.querySelectorAll('.record-result').forEach(card=>{card.hidden=!!((petId&&card.dataset.pet!==petId)||(term&&!card.dataset.search.includes(term)))});});
+document.addEventListener('change',e=>{if(e.target.id==='record-pet')document.getElementById('record-search')?.dispatchEvent(new Event('input',{bubbles:true}))});
 document.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('[role="button"][data-page]')){e.preventDefault();go(e.target.dataset.page)}});
 window.change=go;window.form=()=>showForm();window.backup=()=>download('huellitas-respaldo.json',new Blob([JSON.stringify(state,null,2)],{type:'application/json'}));
 render();
