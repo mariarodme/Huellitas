@@ -225,3 +225,10 @@ input,select,textarea{max-width:100%;min-width:0}
  main #nav{display:flex!important;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;gap:9px;padding:4px 2px 12px;margin:14px 0 18px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
  main #nav button{flex:0 0 auto;scroll-snap-align:start;white-space:nowrap;min-height:46px}
 }
+
+/* La cuenta se gestiona desde Configuración, sin ocupar la pantalla de inicio. */
+body:not(.auth-pending) #huellitas-cloud{display:none!important}
+body:not(.auth-pending):has(#nav button[data-page="configuracion"].active) #huellitas-cloud{display:block!important}
+@media(max-width:650px){
+ body:not(.auth-pending):has(#bottom button[data-page="configuracion"].active) #huellitas-cloud{display:block!important}
+}
