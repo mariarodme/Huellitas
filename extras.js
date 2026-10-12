@@ -110,5 +110,39 @@ function moduleForm(s){
  document.getElementById('cancelModule').onclick=closeForm;
  document.getElementById('moduleForm').onsubmit=e=>{e.preventDefault();data[s].push({id:crypto.randomUUID(),...Object.fromEntries(new FormData(e.target))});closeForm();persist()};
 }
+
+/* Printable medical summary and weight visualization */
+window.printPetReport=function(){
+ if(!data.mascotas.length)return alert('Primero registra una mascota.');
+ const id=prompt('Escribe el nombre exacto de la mascota para generar el informe:\n'+data.mascotas.map(p=>p.nombre).join(', '));
+ if(id===null)return;
+ const pet=data.mascotas.find(p=>p.nombre.toLocaleLowerCase()===id.trim().toLocaleLowerCase());
+ if(!pet)return alert('No se encontró esa mascota.');
+ const sections=[['Consultas',data.salud||[]],['Vacunas',data.vacunas],['Medicamentos',data.medicamentos],['Desparasitación',data.desparasitacion||[]],['Peso',data.peso||[]],['Citas',data.agenda]];
+ const body=sections.map(([name,items])=>'<h2>'+esc(name)+'</h2>'+(items.filter(x=>x.pet===pet.id).length?'<ul>'+items.filter(x=>x.pet===pet.id).map(x=>'<li>'+esc(x.fecha||'')+' — '+esc(x.nombre||x.peso+' kg')+' '+esc(x.notas||'')+'</li>').join('')+'</ul>':'<p>Sin registros.</p>')).join('');
+ const html='<!doctype html><html lang="es"><head><meta charset="utf-8"><title>Informe de '+esc(pet.nombre)+'</title><style>body{font:16px system-ui;margin:40px;line-height:1.5;color:#26251f}h1{color:#c46e67}h2{border-bottom:1px solid #ccc;margin-top:28px}li{margin:7px 0}@media print{button{display:none}}</style></head><body><h1>🐾 Huellitas · Informe de '+esc(pet.nombre)+'</h1><p>Especie: '+esc(pet.especie)+' · Raza: '+esc(pet.raza||'')+' · Nacimiento: '+esc(pet.nacimiento||'')+'</p><p>Generado: '+new Date().toLocaleDateString('es-CR')+'</p>'+body+'<p><small>Este resumen es un registro personal y no sustituye un expediente veterinario oficial.</small></p><button onclick="window.print()">Imprimir / Guardar como PDF</button></body></html>';
+ const blob=URL.createObjectURL(new Blob([html],{type:'text/html'}));const a=document.createElement('a');a.href=blob;a.target='_blank';a.rel='noopener';a.click();setTimeout(()=>URL.revokeObjectURL(blob),60000);
+};
+const originalSettings=render;
+render=function(){
+ originalSettings();
+ if(section==='configuracion'){
+   const el=document.getElementById('content');
+   el.insertAdjacentHTML('beforeend','<div class="card"><h3>📄 Informe médico en PDF</h3><p>Genera un resumen imprimible de vacunas, consultas, tratamientos y peso. En el navegador selecciona «Guardar como PDF».</p><button id="printReport">Preparar informe</button></div>');
+   document.getElementById('printReport').onclick=printPetReport;
+ }
+ if(section==='peso'){
+   const list=(data.peso||[]).filter(x=>Number(x.peso)>0).sort((a,b)=>String(a.fecha).localeCompare(String(b.fecha)));
+   if(list.length>1){
+     const byPet=data.mascotas.map(p=>({pet:p,values:list.filter(x=>x.pet===p.id)})).filter(x=>x.values.length>1);
+     const content=byPet.map(({pet,values})=>{
+       const nums=values.map(x=>Number(x.peso)),lo=Math.min(...nums),hi=Math.max(...nums),span=hi-lo||1;
+       const points=nums.map((n,i)=>(10+i*280/(nums.length-1)).toFixed(1)+','+(100-(n-lo)/span*80).toFixed(1)).join(' ');
+       return '<div class="card"><h3>📈 '+esc(pet.nombre)+'</h3><svg viewBox="0 0 300 115" role="img" aria-label="Evolución del peso" style="width:100%;max-height:220px"><polyline points="'+points+'" fill="none" stroke="#d77963" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg><p>De '+esc(values[0].fecha)+' a '+esc(values[values.length-1].fecha)+' · '+nums[0]+' kg → '+nums[nums.length-1]+' kg</p></div>';
+     }).join('');
+     document.getElementById('content').insertAdjacentHTML('beforeend','<section class="upcoming"><h2>Evolución del peso</h2><div class="cards">'+content+'</div></section>');
+   }
+ }
+};
 render();
 })();
