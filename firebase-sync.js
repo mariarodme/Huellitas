@@ -1,7 +1,7 @@
 /* Huellitas Firebase: sincronización automática con detección de conflictos. */
 (async()=>{
  const cfg={apiKey:"AIzaSyCt95w0i-LTPqLnd-kUwgj9TGb59TD3ZLo",authDomain:"huellitas-aadf9.firebaseapp.com",projectId:"huellitas-aadf9",storageBucket:"huellitas-aadf9.firebasestorage.app",messagingSenderId:"374415395001",appId:"1:374415395001:web:948888a5281f6b3b057368"};
- const host=document.createElement('section');host.id='huellitas-cloud';host.style.cssText='max-width:950px;margin:24px auto;padding:20px;border-radius:20px;background:#fff;border:1px solid #e7ded4;box-shadow:0 3px 14px #0000000a';host.innerHTML='<h2 id="cloud-title">🐾 Bienvenido a Huellitas</h2><p id="cloud-status">Preparando conexión…</p><div id="cloud-controls"></div>';document.querySelector('main')?.append(host);
+ const host=document.createElement('section');host.id='huellitas-cloud';host.style.cssText='max-width:950px;margin:24px auto;padding:20px;border-radius:20px;background:#fff;border:1px solid #e7ded4;box-shadow:0 3px 14px #0000000a';host.innerHTML='<div class="welcome-pet" aria-hidden="true"><span class="welcome-pet-heart">♥</span><span class="welcome-pet-dog">🐶</span><span class="welcome-pet-cat">🐱</span><span class="welcome-pet-paw">🐾</span></div><h2 id="cloud-title">🐾 Bienvenido a Huellitas</h2><p id="cloud-status">Preparando conexión…</p><div id="cloud-controls"></div>';document.querySelector('main')?.append(host);
  const status=document.getElementById('cloud-status'),ui=document.getElementById('cloud-controls');
  const say=t=>{status.textContent=t};
  try{
