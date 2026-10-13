@@ -528,3 +528,16 @@ body:not(.auth-pending)[data-current-page="inicio"] .home-quick-action-arrow{mar
 
 /* v79: show Firebase account on Settings with the modern navigation shell. */
 body:not(.auth-pending)[data-current-page="configuracion"] #huellitas-cloud{display:block!important}
+
+/* Home family portrait: real profile photos remain on this device. */
+body:not(.auth-pending)[data-current-page="inicio"] .hero .art.hero-family-ready{
+ display:flex!important;position:relative;overflow:hidden;
+ background:#f8e8e3!important;isolation:isolate;align-items:stretch;justify-content:center;
+}
+.hero .art.hero-family-ready .hero-family-photo{
+ position:absolute;display:block;object-fit:cover;object-position:center;
+ border:3px solid #fff8f3;border-radius:48%;box-shadow:0 4px 14px #352e2a33;
+}
+.hero .art.hero-family-ready .hero-family-photo-0{width:48%;height:72%;left:1%;bottom:5%;z-index:2}
+.hero .art.hero-family-ready .hero-family-photo-1{width:54%;height:88%;left:24%;top:3%;z-index:1}
+.hero .art.hero-family-ready .hero-family-photo-2{width:48%;height:72%;right:1%;bottom:5%;z-index:3}
