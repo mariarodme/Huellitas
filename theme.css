@@ -671,3 +671,15 @@ body:not(.auth-pending) #huellitas-sync-bar{border-radius:14px;box-shadow:0 3px 
  body:not(.auth-pending) .dialog{border-radius:24px;padding:20px}
 }
 @media(prefers-reduced-motion:reduce){body:not(.auth-pending) .card,body:not(.auth-pending) button,body:not(.auth-pending) .home-pet-card{transition:none!important}}
+
+/* v100 profile tabs and touch-friendly editing */
+.pet-tabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin;padding:8px 2px 14px;margin:15px 0;scroll-snap-type:x proximity}
+.pet-tabs button{flex:0 0 auto;white-space:nowrap;scroll-snap-align:start;min-height:46px;border-radius:16px;background:#f5eee9;color:#365547;padding:10px 17px;font-weight:750}
+.pet-tabs button[aria-selected=true]{background:#d8eadf;color:#254c3a;box-shadow:inset 0 0 0 2px #91bea5}
+.pet-tab-pane[hidden]{display:none!important}.pet-tab-pane{animation:pet-tab-enter .18s ease}
+.pet-tab-pane .card,.pet-tab-pane .health-summary,.pet-tab-pane .emergency-card,.pet-tab-pane .medicine-panel{margin-top:0}
+@keyframes pet-tab-enter{from{opacity:.7;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+body:not(.auth-pending) .dialog form .actions{position:sticky;bottom:-25px;background:#fffaf5;padding:14px 0 max(10px,env(safe-area-inset-bottom));border-top:1px solid #eee3da;z-index:2}
+body:not(.auth-pending) .dialog form .actions button{min-height:48px}
+@media(max-width:650px){.pet-tabs{margin:10px -5px;padding:8px 5px 12px}.pet-tabs button{min-height:48px;padding:10px 15px}.pet-tab-pane{min-height:100px}.dialog form .actions button{flex:1}}
+@media(prefers-reduced-motion:reduce){.pet-tab-pane{animation:none}}
