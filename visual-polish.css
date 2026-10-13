@@ -1,0 +1,25 @@
+/* Huellitas visual polish v105 */
+:root{--hl-cream:#fff9f3;--hl-sage:#c8dfcf;--hl-ink:#345447}
+body:not(.auth-pending){background:var(--hl-cream);color:var(--hl-ink)}
+body:not(.auth-pending) main{max-width:1120px}
+body:not(.auth-pending) h1,body:not(.auth-pending) h2,body:not(.auth-pending) h3{letter-spacing:-.025em}
+body:not(.auth-pending) .card,body:not(.auth-pending) .home-pet-card,body:not(.auth-pending) .home-quick,body:not(.auth-pending) .pet-profile-hero{border-radius:23px;border:1px solid #e7e8e0;box-shadow:0 8px 28px #3454470d}
+body:not(.auth-pending) .hero{background:linear-gradient(120deg,#fff0e7,#fff9f3 55%,#f1f6ed)}
+body:not(.auth-pending) .home-pet-card .home-pet-avatar{width:84px;height:84px;border-radius:22px;object-fit:cover;box-shadow:0 4px 14px #3454471c}
+body:not(.auth-pending) .home-pet-card h3{font-size:1.35rem}
+body:not(.auth-pending) .home-pet-actions button{min-height:44px}
+body:not(.auth-pending) .home-quick-actions button{border-radius:15px;min-height:50px}
+body:not(.auth-pending) .pet-profile-hero{background:linear-gradient(135deg,#fff8f2,#f6faf5)}
+body:not(.auth-pending) .pet-tabs button{border-radius:14px;min-height:48px}
+body:not(.auth-pending) .pet-history-entry{display:grid;grid-template-columns:120px 1fr;gap:17px;position:relative;padding:5px 0 23px 23px;margin-left:7px;border-left:2px solid #d9e5da}
+body:not(.auth-pending) .pet-history-entry:before{content:"";position:absolute;width:11px;height:11px;border-radius:50%;background:#a5c9b2;border:3px solid white;box-shadow:0 0 0 1px #a5c9b2;left:-8px;top:8px}
+body:not(.auth-pending) .pet-history-entry:last-child{border-left-color:transparent}
+body:not(.auth-pending) .pet-history-date{font-size:.86rem;font-weight:700;color:#617669;padding-top:3px}
+body:not(.auth-pending) .pet-history-detail{display:flex;flex-direction:column;gap:5px;min-width:0}
+body:not(.auth-pending) .pet-history-detail strong{overflow-wrap:anywhere}
+body:not(.auth-pending) .pet-history-detail p{margin:0;line-height:1.5}
+body:not(.auth-pending) .pet-history-kind{align-self:flex-start;padding:4px 9px;border-radius:999px;background:#eef4ed;color:#3f6550;font-size:.77rem;font-weight:700}
+body:not(.auth-pending) input,body:not(.auth-pending) select,body:not(.auth-pending) textarea{border:1px solid #cfdcd3;border-radius:13px;min-height:46px}
+body:not(.auth-pending) button:focus-visible,body:not(.auth-pending) summary:focus-visible{outline:3px solid #8468b4;outline-offset:3px}
+body:not(.auth-pending) .calendar-day{border-radius:12px}
+@media(max-width:650px){body:not(.auth-pending) main{padding-inline:15px}body:not(.auth-pending) .home-pet-card .home-pet-avatar{width:72px;height:72px}body:not(.auth-pending) .pet-history-entry{grid-template-columns:1fr;gap:5px;padding-left:16px}body:not(.auth-pending) .calendar-day .calendar-event{font-size:0;width:6px;height:6px;min-width:6px;border-radius:50%;margin:3px auto;padding:0;background:#8aa994}}
