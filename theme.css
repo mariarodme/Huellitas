@@ -608,3 +608,10 @@ body:not(.auth-pending)[data-current-page="inicio"] .hero .art.hero-family-ready
  #huellitas-sync-bar{font-size:12px;gap:4px}
  .home-activity{padding:16px}
 }
+
+/* v95: family activity and reminder controls */
+.home-activity-item strong{font-size:14px;line-height:1.4}
+.huellitas-notification-panel{margin-bottom:18px;background:#f5f0ff;border:1px solid #e6d8f6}
+.huellitas-notification-panel .actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-start}
+.huellitas-notification-panel .muted{font-size:13px}
+@media(max-width:700px){.home-activity-head h2{font-size:19px}.home-activity-item{align-items:flex-start}.huellitas-notification-panel .actions button{flex:1;min-width:120px}}
