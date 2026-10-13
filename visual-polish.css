@@ -102,3 +102,32 @@ body:not(.auth-pending)[data-current-page="inicio"] .hero .art.hero-family-ready
 body:not(.auth-pending) .hero .hero-pet-image{display:block;position:static;width:100%;height:auto;aspect-ratio:1;object-fit:cover;object-position:center;border:0;border-radius:20px;box-shadow:0 4px 14px #344e420d;transform:none}
 .hero .hero-pet-tile figcaption{margin-top:9px;font-size:15px;font-weight:650;line-height:1.4;color:var(--hl-ink);overflow-wrap:anywhere}
 @media(max-width:750px){body:not(.auth-pending)[data-current-page="inicio"] .hero:has(.hero-family-ready){grid-template-columns:1fr;gap:22px!important;padding:24px 20px!important}body:not(.auth-pending)[data-current-page="inicio"] .hero .art.hero-family-ready{max-width:440px!important;margin:0 auto!important;gap:10px!important}body:not(.auth-pending) .hero .hero-pet-image{border-radius:16px}.hero .hero-pet-tile figcaption{font-size:14px;margin-top:7px}}
+
+/* v108: shared typography, actions, spacing and quiet empty states. */
+body:not(.auth-pending) :is(main,.hero,.dialog,.hs-header,.hs-drawer){font-family:'DM Sans',system-ui,-apple-system,sans-serif!important}
+body:not(.auth-pending) :is(h1,h2,h3,h4,button,input,select,textarea,summary){font-family:inherit!important}
+body:not(.auth-pending) .hs-brand{font-family:'Fredoka',sans-serif!important}
+body:not(.auth-pending) :is(h2,h3,h4){font-weight:650!important;line-height:1.3;letter-spacing:-.02em}
+body:not(.auth-pending) #content>section{margin-block:28px}
+body:not(.auth-pending) :is(.cards,.weight-grid,.pet-profile-facts){gap:20px}
+body:not(.auth-pending) :is(.weight-pet,.home-insights,.home-birthdays){border:1px solid #e5e9e2!important;border-radius:20px!important;box-shadow:none!important;background:#fff!important}
+body:not(.auth-pending) main button:not(.calendar-day):not([data-pet-tab]),body:not(.auth-pending) .dialog button{min-height:44px;padding:11px 17px;border:1px solid transparent!important;border-radius:13px!important;background:#365e49!important;color:#fff!important;box-shadow:none!important;font-weight:600!important;line-height:1.4;transform:none!important}
+body:not(.auth-pending) main :is(button.secondary,button[data-action="edit"],button[data-action="printPet"],button[data-action="weightHistory"],button.pet-profile-back),body:not(.auth-pending) .dialog button.secondary{background:#eef2ec!important;color:#3c5947!important;border-color:#dce5da!important}
+body:not(.auth-pending) main :is(button[data-action="delete"],button[data-action="trashRemove"],button.hu-danger){background:transparent!important;color:#98545b!important;border-color:#ecdde0!important;box-shadow:none!important}
+body:not(.auth-pending) :is(main,.dialog) button:hover{filter:brightness(.97)}
+body:not(.auth-pending) :is(main,.dialog) button:disabled{opacity:.55;cursor:not-allowed}
+body:not(.auth-pending) .card>button{margin-top:10px;margin-right:4px}
+body:not(.auth-pending) .pet-tabs{display:flex!important;border:0!important;background:#f1f1ed;border-radius:16px;padding:5px!important;margin-block:22px!important;gap:5px!important;scroll-padding:6px}
+body:not(.auth-pending) .pet-tabs button{min-height:46px;padding:10px 18px;border:1px solid transparent!important;background:transparent!important;color:#56685b!important;box-shadow:none!important;border-radius:12px!important;font-weight:600!important}
+body:not(.auth-pending) .pet-tabs button[aria-selected="true"]{background:#e6deef!important;color:#533e6c!important;border-color:#cbbdda!important;box-shadow:none!important}
+.hu-icon{display:inline-block;width:20px;height:20px;min-width:20px;vertical-align:middle;flex:none;pointer-events:none}
+.hu-icon-label>.hu-icon{margin-right:7px}
+.hu-icon-label:has(>.hu-icon:only-child)>.hu-icon{margin:0}
+.hs-nav-icon .hu-icon,.hs-mobile-tile-icon .hu-icon,.home-quick-action-icon .hu-icon{width:22px;height:22px}
+.hu-empty{display:flex;align-items:center;flex-direction:column;gap:12px;text-align:center;padding:36px 24px;margin:20px 0;background:#f7f8f3;border:1px solid #e4e9de;border-radius:22px}
+.hu-empty-icon{display:grid;place-items:center;width:48px;height:48px;border-radius:16px;background:#e7eee2;color:#557049}
+.hu-empty-icon .hu-icon{width:25px;height:25px}
+.hu-empty h3,.hu-empty p{margin:0!important;max-width:420px}.hu-empty p{color:#60705f;line-height:1.6}
+.hu-empty button{margin-top:4px}
+body:not(.auth-pending) .empty,body:not(.auth-pending) .deworm-empty{border:1px solid #e4e9de;background:#f7f8f3;border-radius:18px;color:#60705f;box-shadow:none}
+@media(max-width:650px){body:not(.auth-pending) :is(.cards,.weight-grid,.pet-profile-facts){gap:16px}.hu-empty{padding:28px 18px}body:not(.auth-pending) .pet-tabs button{padding:10px 14px}body:not(.auth-pending) #content>section{margin-block:22px}}
