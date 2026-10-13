@@ -94,3 +94,11 @@ body:not(.auth-pending) #mobile-quick-toggle{box-shadow:0 4px 14px #344e4222!imp
 }
 @media(prefers-reduced-motion:reduce){body:not(.auth-pending) *,body:not(.auth-pending) *:before,body:not(.auth-pending) *:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 body:not(.auth-pending) .pet-tabs button[aria-selected="true"]{background:var(--hl-lavender)!important;color:#57446e!important;border-color:#cfc4df!important}
+
+/* v107: individual portraits replace the oval collage. */
+body:not(.auth-pending)[data-current-page="inicio"] .hero:has(.hero-family-ready){display:grid!important;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:center;gap:36px!important;padding-block:32px!important}
+body:not(.auth-pending)[data-current-page="inicio"] .hero .art.hero-family-ready{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px!important;width:100%!important;height:auto!important;max-width:480px!important;min-height:0!important;margin:0 0 0 auto!important;padding:0!important;overflow:visible!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;transform:none!important;font-size:16px;text-align:center}
+.hero .hero-pet-tile{display:block;min-width:0;margin:0;padding:0;background:transparent;border:0;box-shadow:none}
+body:not(.auth-pending) .hero .hero-pet-image{display:block;position:static;width:100%;height:auto;aspect-ratio:1;object-fit:cover;object-position:center;border:0;border-radius:20px;box-shadow:0 4px 14px #344e420d;transform:none}
+.hero .hero-pet-tile figcaption{margin-top:9px;font-size:15px;font-weight:650;line-height:1.4;color:var(--hl-ink);overflow-wrap:anywhere}
+@media(max-width:750px){body:not(.auth-pending)[data-current-page="inicio"] .hero:has(.hero-family-ready){grid-template-columns:1fr;gap:22px!important;padding:24px 20px!important}body:not(.auth-pending)[data-current-page="inicio"] .hero .art.hero-family-ready{max-width:440px!important;margin:0 auto!important;gap:10px!important}body:not(.auth-pending) .hero .hero-pet-image{border-radius:16px}.hero .hero-pet-tile figcaption{font-size:14px;margin-top:7px}}
