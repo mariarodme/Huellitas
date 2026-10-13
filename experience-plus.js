@@ -4,7 +4,7 @@ const fmt=v=>{const d=new Date(v);return Number.isNaN(d.getTime())?'Sin registra
 function setup(){
 if(document.getElementById('huellitas-app-dock'))return;
 const dock=document.createElement('nav');dock.id='huellitas-app-dock';dock.setAttribute('aria-label','Navegación rápida');
-dock.innerHTML='<button type="button" data-page="inicio">⌂<span>Inicio</span></button><button type="button" data-page="mascotas">🐾<span>Mascotas</span></button><button type="button" data-page="calendario">▦<span>Calendario</span></button><button type="button" data-page="configuracion">⚙<span>Más</span></button>';
+dock.innerHTML='<button type="button" data-page="inicio" aria-label="Inicio">⌂<span>Inicio</span></button><button type="button" data-page="mascotas" aria-label="Mascotas">🐾<span>Mascotas</span></button><button type="button" data-page="calendario" aria-label="Calendario">▦<span>Calendario</span></button><button type="button" data-page="configuracion" aria-label="Más opciones">⚙<span>Más</span></button>';
 document.body.appendChild(dock);
 const sync=document.createElement('div');sync.id='huellitas-sync-bar';sync.innerHTML='<span id="huellitas-cloud-indicator" data-state="pending" role="status" aria-live="polite">↻ Comprobando guardado</span><span id="huellitas-cloud-time"></span>';
 document.querySelector('main')?.prepend(sync);
