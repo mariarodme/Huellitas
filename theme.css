@@ -634,3 +634,40 @@ body:not(.auth-pending)[data-current-page="inicio"] .hero .art.hero-family-ready
 .medicine-item{display:flex;justify-content:space-between;align-items:center;gap:14px;border-top:1px solid #e8dff0;padding:14px 0}
 .medicine-item p{margin:5px 0}.medicine-item small{color:#5c6b62}.medicine-item button{margin:3px}
 @media(max-width:650px){.health-summary-grid{grid-template-columns:1fr 1fr}.health-summary,.emergency-card,.medicine-panel{padding:15px}.medicine-item{flex-direction:column;align-items:stretch}}
+
+/* v99 visual refresh: consistent soft pastel interface */
+:root{--hs-cream:#fff9f3;--hs-pink:#f4cad8;--hs-sage:#c8dfcf;--hs-lavender:#ded5f3;--hs-ink:#345447;--hs-border:#e9e5dd;--hs-shadow:0 12px 32px rgba(54,76,61,.07)}
+body:not(.auth-pending){background:var(--hs-cream);color:var(--hs-ink);-webkit-font-smoothing:antialiased}
+body:not(.auth-pending) main{max-width:1140px}
+body:not(.auth-pending) h2,body:not(.auth-pending) h3{letter-spacing:-.025em}
+body:not(.auth-pending) .card{border:1px solid var(--hs-border);border-radius:24px;box-shadow:var(--hs-shadow);transition:box-shadow .2s ease,transform .2s ease}
+body:not(.auth-pending) button{transition:background-color .18s ease,box-shadow .18s ease,transform .18s ease}
+body:not(.auth-pending) button:active{transform:scale(.98)}
+body:not(.auth-pending) button:focus-visible,body:not(.auth-pending) a:focus-visible,body:not(.auth-pending) input:focus-visible,body:not(.auth-pending) select:focus-visible,body:not(.auth-pending) textarea:focus-visible{outline:3px solid #9b8bd1;outline-offset:3px}
+body:not(.auth-pending) input,body:not(.auth-pending) select,body:not(.auth-pending) textarea{border-radius:15px;border:1px solid #d9dfd6;background:#fff;min-height:46px}
+body:not(.auth-pending) .hero{border-radius:0 0 34px 34px;overflow:hidden}
+body:not(.auth-pending) .home-pet-card{border-radius:24px;box-shadow:var(--hs-shadow);transition:transform .2s ease,box-shadow .2s ease}
+body:not(.auth-pending) .home-pet-card:hover{transform:translateY(-3px);box-shadow:0 15px 35px #315a4818}
+body:not(.auth-pending) .home-pet-avatar{border:3px solid #fff;box-shadow:0 5px 16px #315a4818}
+body:not(.auth-pending) .home-quick,body:not(.auth-pending) .home-tasks,body:not(.auth-pending) .home-activity{border-radius:26px}
+body:not(.auth-pending) .home-quick-actions button{border-radius:17px;min-height:55px}
+body:not(.auth-pending) .pet-profile-hero{border-radius:30px;box-shadow:var(--hs-shadow)}
+body:not(.auth-pending) .pet-profile-fact{border-radius:22px}
+body:not(.auth-pending) .health-summary,body:not(.auth-pending) .emergency-card,body:not(.auth-pending) .medicine-panel{border-radius:24px;box-shadow:var(--hs-shadow)}
+body:not(.auth-pending) #huellitas-sync-bar{border-radius:14px;box-shadow:0 3px 12px #315a4808}
+@media(max-width:700px){
+ body:not(.auth-pending) main{padding-left:15px;padding-right:15px}
+ body:not(.auth-pending) .hero{border-radius:0 0 26px 26px}
+ body:not(.auth-pending) .home-pet-card{padding:17px}
+ body:not(.auth-pending) .home-quick,body:not(.auth-pending) .home-tasks,body:not(.auth-pending) .home-activity{padding:17px}
+ body:not(.auth-pending) #huellitas-app-dock{left:10px;right:10px;bottom:calc(8px + env(safe-area-inset-bottom));border:1px solid #e9e0d8;border-radius:22px;padding:7px 6px;box-shadow:0 8px 30px #263b2a20;background:rgba(255,250,246,.97);backdrop-filter:blur(16px)}
+ body:not(.auth-pending) #huellitas-app-dock button{min-height:54px;border-radius:16px}
+ body:not(.auth-pending) #huellitas-app-dock button.active{background:#e0f1e7;color:#245642}
+ body:not(.auth-pending){padding-bottom:calc(95px + env(safe-area-inset-bottom))}
+ body:not(.auth-pending) .mobile-quick{bottom:calc(101px + env(safe-area-inset-bottom))!important}
+ body:not(.auth-pending) .pet-profile-actions{gap:8px}
+ body:not(.auth-pending) .pet-profile-actions button{min-height:48px}
+ body:not(.auth-pending) .record{align-items:flex-start}
+ body:not(.auth-pending) .dialog{border-radius:24px;padding:20px}
+}
+@media(prefers-reduced-motion:reduce){body:not(.auth-pending) .card,body:not(.auth-pending) button,body:not(.auth-pending) .home-pet-card{transition:none!important}}
