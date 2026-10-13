@@ -564,3 +564,10 @@ body:not(.auth-pending)[data-current-page="inicio"] .hero .art.hero-family-ready
 .calendar-jump label{font-size:13px;font-weight:750;color:#315a48}
 .calendar-jump select{width:auto;max-width:170px;min-height:44px;border:1px solid #d8d9d1;border-radius:12px;padding:8px 10px;background:white;color:#315a48;font:inherit;text-transform:capitalize}
 @media(max-width:600px){.calendar-toolbar-easy{gap:7px;padding:12px 7px}.calendar-jump{order:-1;width:100%;gap:6px}.calendar-jump select{max-width:132px}.calendar-toolbar-easy>button{flex:1}}
+
+/* Date finder works on desktop and touch screens */
+.calendar-date-finder{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:14px 18px;margin-bottom:16px;border-radius:18px;background:#eaf7f4}
+.calendar-date-finder label{font-weight:800;color:#315a48}
+.calendar-date-finder input[type=date]{width:auto;min-width:170px;min-height:46px;padding:9px 12px;border:1px solid #b7d9ce;border-radius:12px;background:white;color:#315a48;font:inherit}
+.calendar-date-finder button{min-height:46px}
+@media(max-width:600px){.calendar-date-finder{align-items:stretch;gap:9px}.calendar-date-finder label{width:100%;text-align:center}.calendar-date-finder input[type=date]{flex:1;min-width:0;width:100%}.calendar-date-finder button{width:100%}}
