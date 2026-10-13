@@ -8,6 +8,16 @@ dock.innerHTML='<button type="button" data-page="inicio" aria-label="Inicio">⌂
 document.body.appendChild(dock);
 const sync=document.createElement('div');sync.id='huellitas-sync-bar';sync.innerHTML='<span id="huellitas-cloud-indicator" data-state="pending" role="status" aria-live="polite">↻ Comprobando guardado</span><span id="huellitas-cloud-time"></span>';
 document.querySelector('main')?.prepend(sync);
+const quickPanel=document.getElementById('mobile-quick-panel');
+if(quickPanel){
+ const picker=document.createElement('label');picker.className='quick-pet-picker';picker.textContent='¿Para cuál mascota?';
+ const select=document.createElement('select');select.id='quick-pet-select';select.setAttribute('aria-label','Elegir mascota para registro rápido');picker.appendChild(select);
+ quickPanel.querySelector('.mobile-quick-grid')?.before(picker);
+ const updatePets=()=>{let pets=[];try{pets=JSON.parse(localStorage.getItem('huellitas-v1')||'{}').mascotas||[]}catch{};const prev=select.value;select.replaceChildren();pets.forEach(p=>{const o=document.createElement('option');o.value=p.id;o.textContent=p.nombre||'Mascota';select.appendChild(o)});if(pets.some(p=>p.id===prev))select.value=prev;window.huellitasQuickPet=select.value||'';picker.hidden=!pets.length};
+ select.addEventListener('change',()=>{window.huellitasQuickPet=select.value});
+ document.addEventListener('click',e=>{if(e.target.closest('[data-action="mobileQuickToggle"]'))updatePets()},true);
+ updatePets();
+}
 dock.addEventListener('click',e=>{const b=e.target.closest('[data-page]');if(!b)return;const dest=document.querySelector('#nav [data-page="'+b.dataset.page+'"],#hs-drawer-links [data-page="'+b.dataset.page+'"]');if(dest)dest.click()});
 const refresh=()=>{const p=document.body.dataset.currentPage||'inicio';dock.querySelectorAll('button').forEach(b=>{const on=b.dataset.page===p;b.classList.toggle('active',on);if(on)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')})};
 new MutationObserver(refresh).observe(document.body,{attributes:true,attributeFilter:['data-current-page']});refresh();
