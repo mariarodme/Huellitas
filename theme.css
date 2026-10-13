@@ -683,3 +683,11 @@ body:not(.auth-pending) .dialog form .actions{position:sticky;bottom:-25px;backg
 body:not(.auth-pending) .dialog form .actions button{min-height:48px}
 @media(max-width:650px){.pet-tabs{margin:10px -5px;padding:8px 5px 12px}.pet-tabs button{min-height:48px;padding:10px 15px}.pet-tab-pane{min-height:100px}.dialog form .actions button{flex:1}}
 @media(prefers-reduced-motion:reduce){.pet-tab-pane{animation:none}}
+
+/* v102 usability */
+.quick-pet-picker{display:flex;flex-direction:column;gap:6px;margin:12px 0;font-weight:700}
+.quick-pet-picker select{width:100%;min-height:48px;font-size:16px}
+.pet-tab-intro{color:#52685c;line-height:1.5}
+.pet-tabs button{min-height:48px}
+.dialog input,.dialog select,.dialog textarea{font-size:16px}
+@media(prefers-reduced-motion:reduce){.pet-tab-pane{animation:none}}
