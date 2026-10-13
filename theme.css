@@ -615,3 +615,8 @@ body:not(.auth-pending)[data-current-page="inicio"] .hero .art.hero-family-ready
 .huellitas-notification-panel .actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-start}
 .huellitas-notification-panel .muted{font-size:13px}
 @media(max-width:700px){.home-activity-head h2{font-size:19px}.home-activity-item{align-items:flex-start}.huellitas-notification-panel .actions button{flex:1;min-width:120px}}
+
+/* v96 recovery */
+.huellitas-recovery-panel{margin:20px 0;background:#f1f9f4;border:1px solid #d6e8db}
+.recovery-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px solid #dae8df}
+@media(max-width:600px){.recovery-item{flex-direction:column;align-items:stretch}}
