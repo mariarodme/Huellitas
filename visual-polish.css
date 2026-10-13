@@ -131,3 +131,38 @@ body:not(.auth-pending) .pet-tabs button[aria-selected="true"]{background:#e6dee
 .hu-empty button{margin-top:4px}
 body:not(.auth-pending) .empty,body:not(.auth-pending) .deworm-empty{border:1px solid #e4e9de;background:#f7f8f3;border-radius:18px;color:#60705f;box-shadow:none}
 @media(max-width:650px){body:not(.auth-pending) :is(.cards,.weight-grid,.pet-profile-facts){gap:16px}.hu-empty{padding:28px 18px}body:not(.auth-pending) .pet-tabs button{padding:10px 14px}body:not(.auth-pending) #content>section{margin-block:22px}}
+
+/* v109: compact shell, resilient text and keyboard-aware forms. */
+body:not(.auth-pending) .hs-header-inner{min-height:60px!important;padding-block:6px!important;gap:10px}
+body:not(.auth-pending) .hs-brand{font-size:25px!important}
+body:not(.auth-pending) .hs-header .hs-icon-button{min-width:44px;min-height:44px}
+body:not(.auth-pending) :is(.card,.record-result,.home-pet-card,.home-task,.weight-pet,.pet-profile-summary,.pet-history-detail,.home-activity-item>div,.pet-profile-fact>div){min-width:0}
+body:not(.auth-pending) :is(main,.dialog) :is(h1,h2,h3,h4,p,strong,small,figcaption){overflow-wrap:anywhere;word-break:normal}
+body:not(.auth-pending) :is(.record,.care-event,.weight-history-row,.trash-item,.pet-profile-actions,.deworm-entry-actions,.weight-actions){flex-wrap:wrap;gap:10px}
+body:not(.auth-pending) main button:not(.calendar-day),body:not(.auth-pending) .dialog button{max-width:100%;white-space:normal;overflow-wrap:anywhere}
+body:not(.auth-pending) .pet-tabs button{white-space:nowrap!important}
+body:not(.auth-pending) .modal{z-index:1500!important;top:var(--hu-view-top,0px)!important;bottom:auto!important;height:var(--hu-view-height,100dvh)!important;padding:12px!important;align-items:center!important;overflow:hidden}
+body:not(.auth-pending) .dialog{display:flex;flex-direction:column;width:min(560px,100%)!important;max-height:100%!important;overflow:hidden!important;padding:20px!important;border-radius:22px!important}
+body:not(.auth-pending) .dialog>h2{flex:none;font-size:22px!important;margin:0 0 14px!important}
+body:not(.auth-pending) .dialog form{display:flex;flex-direction:column;min-height:0;overflow:hidden}
+body:not(.auth-pending) .dialog .form-fields{overflow-y:auto;overscroll-behavior:contain;min-height:0;padding:2px 5px 16px;scroll-padding:18px;-webkit-overflow-scrolling:touch}
+body:not(.auth-pending) .dialog .actions{position:static!important;bottom:auto!important;flex:none;margin-top:0!important;padding:12px 0 0!important}
+body:not(.auth-pending):has(#modal .modal) :is(#huellitas-app-dock,.mobile-quick){display:none!important}
+body:has(#modal .modal){overflow:hidden}
+.photo-editor{margin:20px 0 4px;padding:18px;border:1px solid #dfe6dc;border-radius:18px;background:#f6f8f2}.photo-editor[hidden]{display:none}
+.photo-editor canvas{display:block;width:min(220px,100%);height:auto;aspect-ratio:1;margin:12px auto;border-radius:16px;background:#fff}
+.photo-editor p{font-size:14px!important;line-height:1.5}.photo-editor h3{font-size:18px!important;margin:0}
+body:not(.auth-pending) .photo-editor input[type=range]{width:100%;padding:0;min-height:44px;accent-color:#416e52;border:0!important;background:transparent!important}
+.photo-status{min-height:1.5em;margin-bottom:0}
+@media(max-width:650px){
+ body:not(.auth-pending) .hs-header-inner{min-height:56px!important;padding:4px 12px!important;gap:5px!important}
+ body:not(.auth-pending) .hs-brand{font-size:23px!important;gap:6px}.hs-brand-mark{width:30px;height:30px}
+ body:not(.auth-pending) main{padding-bottom:calc(var(--hu-dock-height,68px) + 110px + env(safe-area-inset-bottom))!important}
+ body:not(.auth-pending) .mobile-quick{bottom:calc(var(--hu-dock-height,68px) + 24px + env(safe-area-inset-bottom))!important;right:16px;z-index:950}
+ body:not(.auth-pending) .mobile-quick-panel{max-height:calc(var(--hu-view-height,100dvh) - var(--hu-dock-height,68px) - 120px);overflow-y:auto;overscroll-behavior:contain}
+ body:not(.auth-pending) .modal{padding:8px!important}
+ body:not(.auth-pending) .dialog{padding:16px!important;max-height:100%!important;border-radius:20px!important}
+ body:not(.auth-pending) .dialog>h2{font-size:20px!important;margin-bottom:10px!important}
+ body:not(.auth-pending) .dialog .actions{padding-bottom:env(safe-area-inset-bottom)!important}
+ body:not(.auth-pending) .home-pet-top{align-items:flex-start;gap:12px}.home-pet-top>div{min-width:0}
+}
