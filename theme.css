@@ -623,3 +623,14 @@ body:not(.auth-pending)[data-current-page="inicio"] .hero .art.hero-family-ready
 
 /* v97 recoverable records */
 .trash-item{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:16px 0;border-bottom:1px solid #e7ded7}.trash-item p{margin:4px 0;color:#657369}.trash-item button{margin:3px}@media(max-width:680px){.trash-item{flex-direction:column;align-items:stretch}}
+
+/* v98: per-pet health center */
+.health-summary,.emergency-card,.medicine-panel{padding:20px;margin:16px 0;border-radius:20px;border:1px solid #e5e1d8;background:#fff}
+.health-summary{background:#eef8f1}.emergency-card{background:#fff2ec;border-color:#f2d8c9}.medicine-panel{background:#f6f0ff}
+.health-summary h3,.emergency-card h3,.medicine-panel h3{margin:0 0 14px}
+.health-summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.health-summary-grid article{background:#fff;border-radius:14px;padding:13px;display:flex;flex-direction:column;gap:6px}
+.health-summary-grid article span{font-size:14px;overflow-wrap:anywhere}
+.medicine-item{display:flex;justify-content:space-between;align-items:center;gap:14px;border-top:1px solid #e8dff0;padding:14px 0}
+.medicine-item p{margin:5px 0}.medicine-item small{color:#5c6b62}.medicine-item button{margin:3px}
+@media(max-width:650px){.health-summary-grid{grid-template-columns:1fr 1fr}.health-summary,.emergency-card,.medicine-panel{padding:15px}.medicine-item{flex-direction:column;align-items:stretch}}
