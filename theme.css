@@ -576,3 +576,17 @@ body:not(.auth-pending)[data-current-page="inicio"] .hero .art.hero-family-ready
 .calendar-jump #calendar-day{min-width:64px;max-width:76px}
 .calendar-jump .calendar-day-go{min-height:44px;border-radius:12px;padding:9px 16px;font-size:15px;font-weight:800;background:#315a48;color:white}
 @media(max-width:600px){.calendar-toolbar-easy .calendar-jump{width:100%;order:-1;gap:5px}.calendar-toolbar-easy .calendar-jump label{font-size:12px}.calendar-toolbar-easy .calendar-jump select{min-width:0;max-width:116px;padding:8px 5px}.calendar-toolbar-easy .calendar-jump #calendar-day{max-width:62px}.calendar-toolbar-easy .calendar-jump #calendar-year{max-width:85px}.calendar-toolbar-easy .calendar-day-go{padding:8px 12px}}
+
+/* v89: balanced three-pet portrait without overlapping photos */
+body:not(.auth-pending)[data-current-page="inicio"] .hero .art.hero-family-ready{
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch;justify-content:stretch;
+ gap:0;padding:0;overflow:hidden;background:#fff5ed!important;
+}
+body:not(.auth-pending)[data-current-page="inicio"] .hero .art.hero-family-ready .hero-family-photo{
+ position:relative!important;inset:auto!important;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;
+ width:100%!important;height:100%!important;max-width:none!important;min-width:0!important;
+ border:0!important;border-radius:0!important;box-shadow:none!important;
+ object-fit:cover!important;object-position:center center!important;transform:none!important;
+}
+body:not(.auth-pending)[data-current-page="inicio"] .hero .art.hero-family-ready .hero-family-photo-0,
+body:not(.auth-pending)[data-current-page="inicio"] .hero .art.hero-family-ready .hero-family-photo-1{border-right:3px solid #fffaf5!important}
