@@ -23,3 +23,74 @@ body:not(.auth-pending) input,body:not(.auth-pending) select,body:not(.auth-pend
 body:not(.auth-pending) button:focus-visible,body:not(.auth-pending) summary:focus-visible{outline:3px solid #8468b4;outline-offset:3px}
 body:not(.auth-pending) .calendar-day{border-radius:12px}
 @media(max-width:650px){body:not(.auth-pending) main{padding-inline:15px}body:not(.auth-pending) .home-pet-card .home-pet-avatar{width:72px;height:72px}body:not(.auth-pending) .pet-history-entry{grid-template-columns:1fr;gap:5px;padding-left:16px}body:not(.auth-pending) .calendar-day .calendar-event{font-size:0;width:6px;height:6px;min-width:6px;border-radius:50%;margin:3px auto;padding:0;background:#8aa994}}
+
+/* v106: calm hierarchy, shared surfaces and accessible calendar markers. */
+:root{--hl-cream:#fbf8f3;--hl-sage:#e7efe7;--hl-rose:#f6e5e6;--hl-lavender:#ece8f4;--hl-ink:#344e42;--hl-line:#e2e7df;--hl-shadow:0 5px 22px #344e4209}
+body:not(.auth-pending){line-height:1.6}
+body:not(.auth-pending) main{padding-bottom:140px}
+body:not(.auth-pending) .hero{min-height:0!important;padding:24px max(20px,calc((100vw - 1080px)/2))!important;background:var(--hl-cream)!important;display:block!important;border-bottom:1px solid var(--hl-line)!important}
+body:not(.auth-pending) .hero:before,body:not(.auth-pending) .hero:after,body:not(.auth-pending) .hero .art,body:not(.auth-pending) .hero button,body:not(.auth-pending) .hero-eyebrow{display:none!important}
+body:not(.auth-pending) .hero h1{font-size:clamp(24px,3vw,34px)!important;letter-spacing:-.035em;line-height:1.2}
+body:not(.auth-pending) .hero h1 span{color:#7c555f}
+body:not(.auth-pending) .hero p:not(.hero-eyebrow){margin:8px 0 0!important;font-size:15px!important}
+body:not(.auth-pending):not([data-current-page="inicio"]) .hero{display:none!important}
+body:not(.auth-pending)[data-current-page="inicio"] .hs-page-heading,body:not(.auth-pending)[data-current-page="inicio"] .hs-page-subtitle{display:none!important}
+body:not(.auth-pending) :is(.card,.home-pet-card,.home-quick,.home-tasks,.home-activity,.pet-profile-hero){border:1px solid var(--hl-line)!important;box-shadow:var(--hl-shadow)!important;border-radius:22px!important;background:#fff!important}
+body:not(.auth-pending) #content>section,body:not(.auth-pending) .home-fold{margin-block:22px}
+.home-next-care{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:26px 30px;border:1px solid #d6e4d6;border-radius:24px;background:var(--hl-sage)}
+.home-next-care h2{margin:6px 0;font-size:clamp(22px,3vw,30px);line-height:1.25}.home-next-care p{margin:6px 0}.home-next-care small{color:#536b5b}
+.home-section-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}.home-section-heading h2{margin:0}
+body:not(.auth-pending) .home-pet-card{padding:20px!important}
+body:not(.auth-pending) .home-pet-top{display:flex;align-items:center;gap:18px}
+body:not(.auth-pending) .home-pet-card .home-pet-avatar{width:96px;height:96px;flex:0 0 96px;border-radius:24px;border:0!important;box-shadow:none!important;object-fit:cover}
+body:not(.auth-pending) .home-pet-card h3{margin:0 0 5px!important;line-height:1.25}
+body:not(.auth-pending) .home-pet-card>p{min-height:0!important;margin:18px 0!important}
+body:not(.auth-pending) .home-pet-actions{border-top:1px solid var(--hl-line);padding-top:12px}
+body:not(.auth-pending) .home-pet-actions button{width:100%;background:var(--hl-sage)!important;color:var(--hl-ink)!important;box-shadow:none!important;border:0!important}
+body:not(.auth-pending) :is(.home-tasks,.home-activity){padding:24px!important}
+body:not(.auth-pending) .home-task{background:transparent!important;border:0!important;border-bottom:1px solid var(--hl-line)!important;border-radius:0!important;padding:15px 0!important;gap:16px}
+body:not(.auth-pending) .home-task:last-child{border-bottom:0!important}
+.home-fold{border:1px solid var(--hl-line);border-radius:18px;background:#fff;overflow:hidden}.home-fold>summary{padding:18px 22px;cursor:pointer;font-weight:650;min-height:52px}.home-fold>section{margin:0!important;border:0!important;box-shadow:none!important}
+body:not(.auth-pending) .pet-profile-hero{grid-template-columns:minmax(160px,260px) 1fr;gap:32px;padding:28px!important;background:#f0f4ef!important}
+body:not(.auth-pending) .pet-profile-portrait{border-radius:28px;border:4px solid #fff;box-shadow:none;width:100%;max-width:260px}
+body:not(.auth-pending) .pet-profile-summary h2{font-size:clamp(32px,5vw,48px)!important;line-height:1.15;margin:8px 0}
+body:not(.auth-pending) .pet-profile-fact{background:transparent!important;border:0!important;border-bottom:1px solid var(--hl-line)!important;border-radius:0!important;box-shadow:none!important;padding:18px 10px!important}
+body:not(.auth-pending) .pet-tabs{gap:8px;padding:8px 0}
+body:not(.auth-pending) .pet-tabs button{box-shadow:none!important;border:1px solid var(--hl-line)!important;background:white;color:var(--hl-ink)}
+body:not(.auth-pending) .pet-tabs button.active{background:var(--hl-lavender)!important;color:#57446e!important}
+body:not(.auth-pending) .pet-history-entry{padding-block:8px 26px;border-bottom:0;box-shadow:none;background:transparent}
+body:not(.auth-pending) .home-activity-item{border:0!important;border-left:2px solid #dae5db!important;border-radius:0!important;position:relative;margin-left:14px;padding:8px 0 20px 22px!important;background:transparent!important}
+body:not(.auth-pending) .home-activity-icon{position:absolute;left:-13px;top:8px;width:24px;height:24px;border-radius:50%;background:var(--hl-sage);color:#496550;font-size:12px;border:4px solid #fff}
+body:not(.auth-pending) .home-activity-item p{margin:4px 0}
+body:not(.auth-pending) .dialog{background:#fffcf8!important;border:1px solid var(--hl-line)!important;border-radius:24px!important;box-shadow:0 20px 70px #1d332b30!important;padding:24px!important;scroll-padding-block:20px 100px;max-height:90dvh}
+body:not(.auth-pending) .dialog label{font-size:14px;line-height:1.5;margin:18px 0 6px;font-weight:650;color:#42594b}
+body:not(.auth-pending) .dialog :is(input,select,textarea){background:#fff!important;box-shadow:none!important;border:1px solid #cbd7cd!important;font-size:16px!important;padding:12px 14px;line-height:1.5}
+body:not(.auth-pending) .dialog .actions{bottom:-24px!important;margin-top:24px;padding:16px 0 8px!important;background:#fffcf8!important;border-top:1px solid var(--hl-line);display:flex;flex-wrap:wrap;gap:10px}
+body:not(.auth-pending) .dialog .actions button{min-height:48px;flex:1;box-shadow:none!important;border-radius:14px!important}
+body:not(.auth-pending) :is(input,select,textarea):focus-visible{outline:3px solid #8468b4;outline-offset:2px}
+.calendar-dots{display:flex;flex-wrap:wrap;justify-content:center;gap:5px;min-height:12px}
+body:not(.auth-pending) .calendar-grid .calendar-event{width:7px!important;height:7px!important;min-width:7px!important;margin:0!important;padding:0!important;border-radius:50%!important;font-size:0!important;background:var(--care-color,#667e6e)!important}
+.calendar-kind-agenda{--care-color:#557460}.calendar-kind-vacunas{--care-color:#ad647c}.calendar-kind-medicamentos{--care-color:#8068a5}.calendar-kind-recordatorios{--care-color:#a17a32}.calendar-kind-desparasitacion{--care-color:#4b8291}
+body:not(.auth-pending) .calendar-grid .calendar-day{min-height:80px!important;text-align:center!important}
+body:not(.auth-pending) .calendar-grid .calendar-day.selected{background:#e7efe7!important;box-shadow:inset 0 0 0 2px #597b63!important}
+.calendar-legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin:16px 0 24px;font-size:13px}.calendar-legend>span{display:inline-flex;align-items:center;gap:7px}.calendar-legend i{width:8px;height:8px;background:var(--care-color);border-radius:50%}
+.visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+body:not(.auth-pending) #huellitas-app-dock{border-radius:20px;box-shadow:0 6px 24px #344e4212;background:#fffdfaf7}
+body:not(.auth-pending) #huellitas-app-dock button{gap:5px!important;min-height:54px!important}
+body:not(.auth-pending) #huellitas-app-dock button.active{background:var(--hl-sage)!important;color:#315742!important}
+body:not(.auth-pending) #mobile-quick-toggle{box-shadow:0 4px 14px #344e4222!important;border:2px solid #fff!important;width:52px!important;height:52px!important;font-size:30px!important}
+@media(max-width:650px){
+ body:not(.auth-pending) main{padding-inline:16px!important}
+ .home-next-care{padding:22px;flex-direction:column;align-items:flex-start;gap:16px}.home-next-care button{width:100%}
+ .home-section-heading{align-items:center;flex-wrap:wrap}
+ body:not(.auth-pending) .home-pet-grid{grid-template-columns:1fr}
+ body:not(.auth-pending) .home-pet-card .home-pet-avatar{width:90px;height:90px;flex-basis:90px}
+ body:not(.auth-pending) .pet-profile-hero{grid-template-columns:1fr;gap:20px;padding:22px!important}
+ body:not(.auth-pending) .pet-profile-portrait{width:min(100%,260px);margin:auto}
+ body:not(.auth-pending) .home-task{flex-wrap:wrap}
+ body:not(.auth-pending) .home-task>div{display:flex;flex-wrap:wrap;gap:8px}
+ body:not(.auth-pending) .calendar-grid .calendar-day{min-height:65px!important}
+ body:not(.auth-pending) .dialog{padding:20px!important}.dialog .actions{bottom:-20px!important}
+}
+@media(prefers-reduced-motion:reduce){body:not(.auth-pending) *,body:not(.auth-pending) *:before,body:not(.auth-pending) *:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+body:not(.auth-pending) .pet-tabs button[aria-selected="true"]{background:var(--hl-lavender)!important;color:#57446e!important;border-color:#cfc4df!important}
