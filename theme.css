@@ -541,3 +541,17 @@ body:not(.auth-pending)[data-current-page="inicio"] .hero .art.hero-family-ready
 .hero .art.hero-family-ready .hero-family-photo-0{width:48%;height:72%;left:1%;bottom:5%;z-index:2}
 .hero .art.hero-family-ready .hero-family-photo-1{width:54%;height:88%;left:24%;top:3%;z-index:1}
 .hero .art.hero-family-ready .hero-family-photo-2{width:48%;height:72%;right:1%;bottom:5%;z-index:3}
+
+/* Pet profiles — large portraits, clear hierarchy, responsive pastel cards */
+.pet-profile-back{margin-bottom:18px;background:#f8e5df!important;color:#315a48!important}
+.pet-profile-hero{display:grid;grid-template-columns:minmax(190px,300px) minmax(0,1fr);align-items:center;gap:clamp(22px,5vw,65px);padding:clamp(22px,4vw,42px);border-radius:32px;background:linear-gradient(125deg,#e8f5fc,#e8f5f8 65%,#f4e9f6);box-shadow:0 10px 30px #344e4920}
+.pet-profile-portrait{width:100%;aspect-ratio:1;max-width:300px;border-radius:50%;border:8px solid white;box-shadow:0 10px 25px #25453625;background:#fce4ef;display:flex;align-items:center;justify-content:center;overflow:hidden;font-size:90px}
+.pet-profile-portrait img{width:100%;height:100%;object-fit:cover;display:block}
+.pet-profile-summary{min-width:0}.pet-profile-kicker{font-size:12px;font-weight:800;letter-spacing:2px;color:#9a6567}.pet-profile-summary h2{font-size:clamp(36px,5vw,62px);line-height:1.1;margin:12px 0;color:#315a48}.pet-profile-subtitle{font-size:18px;color:#4d625c;margin:12px 0 30px}
+.pet-profile-actions{display:flex;flex-wrap:wrap;gap:12px}.pet-profile-actions button{min-height:46px}
+.pet-profile-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:22px 0}
+.pet-profile-fact{border-radius:24px;padding:22px;display:flex;align-items:flex-start;gap:15px;min-width:0;border:1px solid #315a4810;box-shadow:0 4px 16px #315a480b}
+.pet-profile-fact-0{background:#eaf4fc}.pet-profile-fact-1{background:#fff0ef}.pet-profile-fact-2{background:#eaf8f1}.pet-profile-fact-3{background:#f4edff}.pet-profile-fact-4{background:#fff2e5}
+.pet-profile-fact-icon{font-size:28px;line-height:1.1;flex-shrink:0}.pet-profile-fact h3{margin:0 0 8px;font-size:18px;color:#284b3e}.pet-profile-fact p{margin:0;line-height:1.5;overflow-wrap:anywhere}
+@media(max-width:800px){.pet-profile-facts{grid-template-columns:repeat(2,minmax(0,1fr))}.pet-profile-hero{grid-template-columns:200px minmax(0,1fr)}}
+@media(max-width:600px){.pet-profile-hero{grid-template-columns:1fr;text-align:center;padding:25px 18px;gap:18px}.pet-profile-portrait{width:min(72vw,270px);margin:auto}.pet-profile-summary h2{font-size:40px}.pet-profile-subtitle{margin-bottom:20px}.pet-profile-actions{justify-content:center}.pet-profile-actions button{flex:1 1 160px}.pet-profile-facts{grid-template-columns:1fr;gap:12px}.pet-profile-fact{padding:18px}}
