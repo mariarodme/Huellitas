@@ -571,3 +571,8 @@ body:not(.auth-pending)[data-current-page="inicio"] .hero .art.hero-family-ready
 .calendar-date-finder input[type=date]{width:auto;min-width:170px;min-height:46px;padding:9px 12px;border:1px solid #b7d9ce;border-radius:12px;background:white;color:#315a48;font:inherit}
 .calendar-date-finder button{min-height:46px}
 @media(max-width:600px){.calendar-date-finder{align-items:stretch;gap:9px}.calendar-date-finder label{width:100%;text-align:center}.calendar-date-finder input[type=date]{flex:1;min-width:0;width:100%}.calendar-date-finder button{width:100%}}
+
+/* Compact single-row date navigation, no duplicate finder */
+.calendar-jump #calendar-day{min-width:64px;max-width:76px}
+.calendar-jump .calendar-day-go{min-height:44px;border-radius:12px;padding:9px 16px;font-size:15px;font-weight:800;background:#315a48;color:white}
+@media(max-width:600px){.calendar-toolbar-easy .calendar-jump{width:100%;order:-1;gap:5px}.calendar-toolbar-easy .calendar-jump label{font-size:12px}.calendar-toolbar-easy .calendar-jump select{min-width:0;max-width:116px;padding:8px 5px}.calendar-toolbar-easy .calendar-jump #calendar-day{max-width:62px}.calendar-toolbar-easy .calendar-jump #calendar-year{max-width:85px}.calendar-toolbar-easy .calendar-day-go{padding:8px 12px}}
