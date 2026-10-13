@@ -525,3 +525,6 @@ body:not(.auth-pending)[data-current-page="inicio"] .home-quick-action-arrow{mar
  .deworm-grid{display:block!important}
  .deworm-grid>.deworm-pet{margin:0!important}
 }
+
+/* v79: show Firebase account on Settings with the modern navigation shell. */
+body:not(.auth-pending)[data-current-page="configuracion"] #huellitas-cloud{display:block!important}
