@@ -51,6 +51,38 @@
   }
   return JSON.stringify(result);
  };
+ // Conservative first-time reconciliation: only fill missing values; never choose between conflicting nonempty values.
+ const mergeMissing=(localRaw,remoteRaw)=>{
+  const left=JSON.parse(localRaw||'{}'),right=JSON.parse(remoteRaw||'{}');
+  const eq=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+  const empty=v=>v===undefined||v===null||v==='';
+  const result={...right};
+  for(const section of new Set([...Object.keys(left),...Object.keys(right)])){
+   const l=left[section],r=right[section];
+   if(section==='mascotas'&&Array.isArray(l)&&Array.isArray(r)){
+    const byId=new Map(r.map(p=>[p.id,p]));
+    for(const pet of l){
+     if(!pet||typeof pet.id!=='string')throw Error('Mascota sin identificador');
+     if(!byId.has(pet.id)){byId.set(pet.id,pet);continue}
+     const cloud=byId.get(pet.id),merged={...cloud};
+     for(const field of new Set([...Object.keys(pet),...Object.keys(cloud)])){
+      if(eq(pet[field],cloud[field]))continue;
+      if(empty(cloud[field]))merged[field]=pet[field];
+      else if(!empty(pet[field]))throw Error('Datos distintos en '+(pet.nombre||'mascota')+' / '+field);
+     }
+     byId.set(pet.id,merged);
+    }
+    result[section]=[...byId.values()];
+   }else if(eq(l,r))continue;
+   else if(Array.isArray(l)&&Array.isArray(r)){
+    if(l.length===0)continue;
+    if(r.length===0)result[section]=l;
+    else throw Error('Registros distintos en '+section);
+   }else if(empty(r))result[section]=l;
+   else if(!empty(l))throw Error('Datos distintos en '+section);
+  }
+  return JSON.stringify(result);
+ };
  const error=e=>{console.error(e);say('Error: '+(e.code||e.message||'No se pudo completar.'))};
  const authForm=()=>{ui.innerHTML='<p>Ingresá a tus mascotas y sus cuidados.</p><div style="display:flex;flex-wrap:wrap;gap:8px"><input id="cloud-email" type="email" autocomplete="email" placeholder="Correo electrónico" style="padding:12px;min-width:180px;flex:1"><input id="cloud-pass" type="password" autocomplete="current-password" placeholder="Contraseña" style="padding:12px;min-width:180px;flex:1"></div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><button id="cloud-login">Entrar</button><button id="cloud-signup">Crear cuenta</button><button id="cloud-google">Entrar con Google</button></div><p style="font-size:13px">Tu contraseña no se guarda en Huellitas; se procesa mediante Firebase Authentication.</p>';
  const credentials=()=>[document.getElementById('cloud-email').value.trim(),document.getElementById('cloud-pass').value];
@@ -105,7 +137,25 @@
    rememberBase(selectedOwner,snap.data().payload);
    say('☁️ Datos familiares recibidos de Firebase.');location.reload();
   }else{
-   say('⚠️ Este dispositivo tiene cambios sin una referencia común de sincronización. Se conservaron ambas copias. Revisá antes de reemplazar.');
+   try{
+    const merged=mergeMissing(raw,snap.data().payload);
+    const remoteRaw=snap.data().payload;
+    const backupKey='huellitas-pre-sync-'+user.uid+'-'+selectedOwner+'-'+Date.now();
+    localStorage.setItem(backupKey,raw);
+    if(fingerprint(merged)===remote){
+     localStorage.setItem(key,remoteRaw);rememberBase(selectedOwner,remoteRaw);
+     say('☁️ Información recuperada de Firebase sin perder registros locales.');location.reload();
+    }else{
+     runTransaction(db,async tx=>{
+      const latest=await tx.get(ref);
+      if(fingerprint(latest.data()?.payload)!==remote)throw Error('Firebase cambió durante la comprobación.');
+      tx.set(ref,{payload:merged,updatedAt:new Date().toISOString()});
+     }).then(()=>{
+      localStorage.setItem(key,merged);rememberBase(selectedOwner,merged);
+      say('☁️ Registros compatibles unidos y guardados en Firebase.');location.reload();
+     }).catch(e=>say('⚠️ No se completó la unión automática: '+(e.code||e.message)));
+    }
+   }catch(e){say('⚠️ Hay datos diferentes que necesitan revisión: '+e.message+'. No se reemplazó ninguna copia.')}
   }
  }else if(remote!==null&&baselineRaw!==null){
   try{
