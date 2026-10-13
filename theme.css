@@ -691,3 +691,9 @@ body:not(.auth-pending) .dialog form .actions button{min-height:48px}
 .pet-tabs button{min-height:48px}
 .dialog input,.dialog select,.dialog textarea{font-size:16px}
 @media(prefers-reduced-motion:reduce){.pet-tab-pane{animation:none}}
+
+/* v104 compact nonredundant profile actions */
+.profile-add-details{margin:14px 0;border:1px solid #d6e3d9;border-radius:15px;padding:10px 14px;background:#f7fbf8}
+.profile-add-details summary{cursor:pointer;font-weight:700;min-height:44px;display:list-item;align-content:center;color:#345447}
+.profile-add-details summary:focus-visible{outline:3px solid #8270b3;outline-offset:3px}
+.emergency-card p{line-height:1.55}
