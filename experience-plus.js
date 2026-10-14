@@ -27,7 +27,7 @@ const mountRecovery=()=>{
  if(!content||content.querySelector('#huellitas-recovery-panel'))return;
  const panel=document.createElement('section');panel.id='huellitas-recovery-panel';panel.className='card huellitas-recovery-panel';
  panel.innerHTML='<h3>🛡️ Copias de recuperación</h3><p>Huellitas conserva copias de seguridad locales antes de combinar información entre dispositivos. Podés descargarlas sin modificar tus registros actuales.</p><div id="huellitas-recovery-list"></div>';
- content.append(panel);
+ (document.getElementById('settings-recovery')||content).append(panel);
  const list=panel.querySelector('#huellitas-recovery-list');let user='';try{user=localStorage.getItem('huellitas-account-uid')||''}catch{}
  const items=[];
  try{for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(!k||!k.startsWith('huellitas-recovery-'+user+'-')||k.endsWith('-last'))continue;try{const value=JSON.parse(localStorage.getItem(k));if(value&&value.payload&&Array.isArray(JSON.parse(value.payload).mascotas))items.push({key:k,...value})}catch{}}}catch{}
@@ -43,7 +43,7 @@ const mountNotifications=()=>{
  if(!content||content.querySelector('#huellitas-notification-panel'))return;
  const panel=document.createElement('section');panel.id='huellitas-notification-panel';panel.className='card huellitas-notification-panel';
  panel.innerHTML='<h3>🔔 Centro de avisos</h3><p>Consultá tus próximos cuidados y activá los avisos del navegador mientras usás Huellitas.</p><p id="huellitas-notification-permission" role="status"></p><div class="actions"><button type="button" id="huellitas-notification-enable">Activar avisos</button><button type="button" id="huellitas-notification-test" class="secondary">Probar aviso</button></div><p class="muted">Los avisos automáticos programados funcionan mientras la aplicación está abierta. En iPhone, los permisos dependen de la versión de iOS y de instalar la web en Inicio.</p>';
- content.prepend(panel);
+ (document.getElementById('settings-notifications')||content).prepend(panel);
  const status=panel.querySelector('#huellitas-notification-permission');
  const update=()=>{status.textContent=!('Notification'in window)?'Este navegador no admite notificaciones.':'Permiso del navegador: '+(Notification.permission==='granted'?'activado':Notification.permission==='denied'?'bloqueado':'sin activar')};
  panel.querySelector('#huellitas-notification-enable').onclick=async()=>{if(!('Notification'in window))return alert('Tu navegador no admite avisos.');try{await Notification.requestPermission()}catch(e){alert('No se pudo solicitar el permiso.')}update()};
