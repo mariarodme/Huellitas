@@ -166,3 +166,11 @@ body:not(.auth-pending) .photo-editor input[type=range]{width:100%;padding:0;min
  body:not(.auth-pending) .dialog .actions{padding-bottom:env(safe-area-inset-bottom)!important}
  body:not(.auth-pending) .home-pet-top{align-items:flex-start;gap:12px}.home-pet-top>div{min-width:0}
 }
+
+/* v110: direct photo editing from the home portraits. */
+body:not(.auth-pending)[data-current-page="inicio"] .hero .hero-photo-edit{display:flex!important;flex-direction:column;align-items:stretch;gap:0;position:relative;width:100%!important;min-width:0;padding:0!important;margin:0;border:0!important;border-radius:20px!important;background:transparent!important;box-shadow:none!important;transform:none!important;overflow:hidden;color:#fff!important;cursor:pointer}
+body:not(.auth-pending) .hero .hero-photo-edit .hero-pet-image{width:100%;border-radius:20px}
+.hero-photo-edit-label{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:max-content;max-width:calc(100% - 12px);border-radius:9px;padding:5px 9px;background:#294b3ff0;color:#fff;font:600 12px/1.4 'DM Sans',sans-serif;text-align:center}
+body:not(.auth-pending) .hero .hero-photo-edit:hover{box-shadow:0 0 0 3px #c5d9c9!important}
+body:not(.auth-pending) .hero .hero-photo-edit:focus-visible{outline:3px solid #8468b4;outline-offset:4px}
+@media(max-width:650px){body:not(.auth-pending) .hero .hero-photo-edit,body:not(.auth-pending) .hero .hero-photo-edit .hero-pet-image{border-radius:16px!important}.hero-photo-edit-label{font-size:11px;padding:4px 6px;bottom:6px}}
